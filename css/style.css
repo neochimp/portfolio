@@ -7,7 +7,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 
 header {
@@ -21,9 +20,10 @@ header {
 /*thin line at top*/
 #top-line {
   width: 100vw;
-  height: 5px;
+  height: .75vh;
   font: 0;
   background-color: var(--mainColor);
+  position: fixed;
 }
 
 #nav-container {
@@ -32,48 +32,114 @@ header {
   background-color: var(--bgColor);
   font-family: 'Oswald', sans-serif;
   font-weight: 900;
-  color: white;
+  color: black;
   vertical-align: top;
 }
 
 /*my name lol*/
 #logo {
-  font-size: 3rem;
-  padding-left: 1rem;
-}
-
-/* Parallelogram nav background and links */
-ul {
-  transform: skewX(30deg) translateX(0.5rem);     /* skew the container */
-  display: flex;
-  background-color: var(--mainColor);
-  width: 60%;
-  margin-left: auto;
-  list-style-type: none;
-  justify-content: space-evenly;
-  position: absolute;
-  top: 0;
-  right: 0;
-  font-size: 1.5rem;
-}
-
-li {
-  transform: skewX(-30deg);
-  display: block;
-}
-
-li a {
-  text-decoration: none;
+  font-size: 4em;
+  padding-left: 0.25em;
   color: white;
+  position: static;
 }
 
+/* Parallelogram nav background and links for wide screens */
+@media screen and (min-width: 1200px){
+  ul {
+    transform: skewX(30deg) translateX(0.65em);     /* skew the container */
+    display: flex;
+    background-color: var(--mainColor);
+    width: 30em;
+    margin-left: auto;
+    list-style-type: none;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 0;
+    right: 0;
+    font-size: 2rem;
+  }
+  li {
+    transform: skewX(-30deg) translateX(-0.2em);
+    display: block;
+  }
+  
+  li a {
+    text-decoration: none;
+    color: black;
+  }
+
+  li a:hover{
+    color: white;
+  }
+}
+
+@media screen and (max-width: 1200px){
+  ul {
+    transform: skewX(30deg) translateX(10%);     /* skew the container */
+    display: flex;
+    background-color: var(--mainColor);
+    width: 6%;
+    margin-left: auto;
+    list-style-type: none;
+    justify-content: space-evenly;
+    position: fixed;
+    top: 0;
+    right: 0;
+    font-size: 2rem;
+  }
+
+  li {
+    display: none;
+  }
+  .ln1, .ln2, .ln3 {
+    width: 100%;
+    height: 10%;
+    background-color: #FFF;
+    margin: 12% 0;
+    transition: 0.4s;
+  }
+
+  .change .ln1 {
+    transform: translate(0, 200%) rotate(-45deg);
+  }
+
+  .change .ln2 {
+    opacity: 0;
+  }
+
+  .change .ln3 {
+    transform: translate(0, -200%) rotate(45deg);
+  }
+
+  .animatedico {
+      transform: skewX(-30deg) translateY(5%);
+      position: relative;
+      display: inline-block;
+      cursor: pointer;
+      right: 4%;
+      width: 5vh;
+      height: 5vh;
+      padding: 0; /* Remove padding to prevent overflow */
+      object-fit: contain;
+      align-items: center;
+      justify-content: center;
+  }
+
+}
 
 body {
-    background-color: var(--bgColor);
-    width: 100vw;
-    height: 100vh;
-    overflow-x: hidden;
-    overflow-wrap:break-word;
-    color: #ffffff
+  background-color: var(--bgColor);
+  width: 100vw;
+  height: 200vh;
+  overflow-x: hidden;
+  overflow-wrap:break-word;
+  color: #ffffff 
 }
+
+
+
+
+
+
 
