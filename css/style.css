@@ -14,7 +14,7 @@ header {
   top: 0;
   width: 100%;
   z-index:1000;
-
+  user-select: none;
 }
 
 /*thin line at top*/
@@ -45,8 +45,11 @@ header {
   position: static;
 }
 
-/* ========== Default styles: wide screens (≥1200px and up) ========== */
-
+/* ========== Default styles: wide screens ========== */
+a{
+  text-decoration: none;
+  color: white;
+}
 ul {
   display: flex;
   background-color: var(--mainColor);
@@ -67,7 +70,6 @@ li {
 }
 
 li a {
-  text-decoration: none;
   color: black;
 }
 
@@ -87,22 +89,31 @@ body {
 }
 
 .main{
-  display: flex;
   gap: 1.25em;
   padding: 1.25em;
   flex-wrap: wrap;
 }
 
 .textbox {
-  flex: 2;
+  width: 65%;
   padding: 2em;
   font-size: 1.5em;
-  border: 1px solid #00ab80
+  margin-right: 1.25em;
 }
 
+.text::before{
+  content: "> ";
+}
+
+
 .recents {
-  flex: 1;
-  padding: 1.25em;
+  position: fixed;
+  top: 7em; /* same as body padding-top */
+  left: 65%; /* gap between boxes */
+  width: 35%;
+  padding-left: 2.5em;
+  border-left: solid; color: var(--mainColor);
+  padding-right: 3em;
 }
 
 .title {
@@ -111,8 +122,25 @@ body {
   color: var(--mainColor);
 }
 
+.recent-blog {
+  color: white;
+  padding: 1em;
+  padding-left: 0;
+  border-bottom: 1px solid;
+}
 
-/* ========== Override styles for small screens (<1200px) ========== */
+#last-blog {
+  border-bottom: none;
+}
+.project-link a{
+  color: var(--mainColor);
+}
+
+.project-link a:hover {
+  color: white;
+  text-decoration: underline;
+}
+/* ========== Override styles for small screens ========== */
 
 @media screen and (max-width: 75em) {
   ul {
@@ -156,6 +184,19 @@ body {
     object-fit: contain;
     align-items: center;
     justify-content: center;
+  }
+
+  .textbox {
+    width: 100%;
+    margin-right: 0;
+  }
+
+  .recents {
+    position: static;
+    width: 100%;
+    left: auto;
+    top: auto;
+    padding-inline-start: 3em;
   }
 }
 
