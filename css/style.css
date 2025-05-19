@@ -12,7 +12,7 @@
 header {
   position: absolute;
   top: 0;
-  width 100%;
+  width: 100%;
   z-index:1000;
 
 }
@@ -38,60 +38,92 @@ header {
 
 /*my name lol*/
 #logo {
-  font-size: 4em;
-  padding-left: 0.25em;
+  font-size: 3em;
+  padding: 0.25em;
+  padding-left: 0.5em;
   color: white;
   position: static;
 }
 
-/* Parallelogram nav background and links for wide screens */
-@media screen and (min-width: 1200px){
-  ul {
-    transform: skewX(30deg) translateX(0.65em);     /* skew the container */
-    display: flex;
-    background-color: var(--mainColor);
-    width: 30em;
-    margin-left: auto;
-    list-style-type: none;
-    justify-content: space-evenly;
-    position: fixed;
-    top: 0;
-    right: 0;
-    font-size: 2rem;
-  }
-  li {
-    transform: skewX(-30deg) translateX(-0.2em);
-    display: block;
-  }
-  
-  li a {
-    text-decoration: none;
-    color: black;
-  }
+/* ========== Default styles: wide screens (≥1200px and up) ========== */
 
-  li a:hover{
-    color: white;
-  }
+ul {
+  display: flex;
+  background-color: var(--mainColor);
+  width: 30em;
+  margin-left: auto;
+  list-style-type: none;
+  justify-content: space-evenly;
+  position: fixed;
+  top: 0;
+  right: 0;
+  font-size: 2rem;
+  transform: skewX(30deg) translateX(0.65em); /* default skew */
 }
 
-@media screen and (max-width: 1200px){
+li {
+  transform: skewX(-30deg) translateX(-0.2em);
+  display: block;
+}
+
+li a {
+  text-decoration: none;
+  color: black;
+}
+
+li a:hover {
+  color: white;
+}
+
+body {
+  background-color: var(--bgColor);
+  width: 100vw;
+  height: 200vh;
+  overflow-x: hidden;
+  overflow-wrap:break-word;
+  color: #ffffff ;
+  padding-top: 5em;
+  font-family: 'Cascadia Code', sans-serif;
+}
+
+.main{
+  display: flex;
+  gap: 1.25em;
+  padding: 1.25em;
+  flex-wrap: wrap;
+}
+
+.textbox {
+  flex: 2;
+  padding: 2em;
+  font-size: 1.5em;
+  border: 1px solid #00ab80
+}
+
+.recents {
+  flex: 1;
+  padding: 1.25em;
+}
+
+.title {
+  font-size: 2em;
+  padding-bottom: 0.5em;
+  color: var(--mainColor);
+}
+
+
+/* ========== Override styles for small screens (<1200px) ========== */
+
+@media screen and (max-width: 75em) {
   ul {
-    transform: skewX(30deg) translateX(10%);     /* skew the container */
-    display: flex;
-    background-color: var(--mainColor);
     width: 6%;
-    margin-left: auto;
-    list-style-type: none;
-    justify-content: space-evenly;
-    position: fixed;
-    top: 0;
-    right: 0;
-    font-size: 2rem;
+    transform: skewX(30deg) translateX(10%);
   }
 
   li {
     display: none;
   }
+
   .ln1, .ln2, .ln3 {
     width: 100%;
     height: 10%;
@@ -113,33 +145,19 @@ header {
   }
 
   .animatedico {
-      transform: skewX(-30deg) translateY(5%);
-      position: relative;
-      display: inline-block;
-      cursor: pointer;
-      right: 4%;
-      width: 5vh;
-      height: 5vh;
-      padding: 0; /* Remove padding to prevent overflow */
-      object-fit: contain;
-      align-items: center;
-      justify-content: center;
+    transform: skewX(-30deg) translateY(5%);
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    right: 4%;
+    width: 5vh;
+    height: 5vh;
+    padding: 0;
+    object-fit: contain;
+    align-items: center;
+    justify-content: center;
   }
-
 }
-
-body {
-  background-color: var(--bgColor);
-  width: 100vw;
-  height: 200vh;
-  overflow-x: hidden;
-  overflow-wrap:break-word;
-  color: #ffffff 
-}
-
-
-
-
 
 
 
