@@ -48,7 +48,7 @@ header {
 /* ========== Default styles: wide screens ========== */
 a{
   text-decoration: none;
-  color: white;
+  color: var(--mainColor);
 }
 #navbar {
   display: flex;
@@ -90,21 +90,52 @@ body {
 
 .main{
   gap: 1.25em;
-  padding: 1em;
   flex-wrap: wrap;
+  padding: 1em 10em 3em;
 }
 
 .textbox {
-  width: 70%;
+  width: 100%;
   padding: 2em;
   font-size: 1.5em;
   margin-right: 1.25em;
 }
 
-.text::before{
-  content: "> ";
+.description{
+  font-style: italic;
+  font-size: 1em;
+  color:#949494;
+  padding-bottom: 0.5em;
 }
 
+.author{
+  font-size: 0.7em;
+  color:#949494;
+}
+
+.subtitle{
+  font-size: 1.5em;
+}
+
+.text:not(.cent)::before{
+  content: "\a> ";
+  white-space: pre;
+}
+
+
+.subtitle::before{
+  content: "\a\a";
+  white-space: pre;
+}
+
+.it{
+  font-style: italic;
+}
+
+.cent{
+  text-align: center;
+  
+}
 
 .recents {
   position: fixed;
@@ -113,18 +144,18 @@ body {
   width: 30%;
   padding-left: 2.5em;
   border-left: solid; color: var(--mainColor);
-  padding-right: 3em;
+  padding-right: 10em;
 }
 
 .title {
   font-size: 2em;
-  padding-bottom: 0.5em;
+  padding-bottom: 0.2em;
   color: var(--mainColor);
 }
 
 .recent-blog {
   color: white;
-  padding: 1em;
+  padding: 2em;
   padding-left: 0;
   border-bottom: 1px solid;
 }
@@ -140,6 +171,9 @@ body {
   color: white;
   text-decoration: underline;
 }
+
+
+
 /* ========== Override styles for small screens ========== */
 
 @media screen and (max-width: 75em) {
