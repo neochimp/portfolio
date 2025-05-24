@@ -18,7 +18,7 @@
 }
 
 
-#myUL li a {
+#myUL li {
     border-bottom: 1px solid #00ab8073;
     width: 60%;
     padding: 0.5em;
@@ -31,7 +31,7 @@
     margin-right: auto;
 }
 
-#myUL li a:hover {
+#myUL li:hover {
     background-color: rgb(41, 48, 47);
 }
 
