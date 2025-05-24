@@ -50,7 +50,7 @@ a{
   text-decoration: none;
   color: white;
 }
-ul {
+#navbar {
   display: flex;
   background-color: var(--mainColor);
   width: 30em;
@@ -64,16 +64,16 @@ ul {
   transform: skewX(30deg) translateX(0.65em); /* default skew */
 }
 
-li {
+#navbar li {
   transform: skewX(-30deg) translateX(-0.2em);
   display: block;
 }
 
-li a {
+#navbar li a {
   color: black;
 }
 
-li a:hover {
+#navbar li a:hover {
   color: white;
 }
 
@@ -90,12 +90,12 @@ body {
 
 .main{
   gap: 1.25em;
-  padding: 1.25em;
+  padding: 1em;
   flex-wrap: wrap;
 }
 
 .textbox {
-  width: 65%;
+  width: 70%;
   padding: 2em;
   font-size: 1.5em;
   margin-right: 1.25em;
@@ -109,8 +109,8 @@ body {
 .recents {
   position: fixed;
   top: 7em; /* same as body padding-top */
-  left: 65%; /* gap between boxes */
-  width: 35%;
+  left: 70%; /* gap between boxes */
+  width: 30%;
   padding-left: 2.5em;
   border-left: solid; color: var(--mainColor);
   padding-right: 3em;

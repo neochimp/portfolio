@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Cameron Lee Portfolio</title>
+  <meta name="author" content="Cameron Lee">
+  <meta name="description" content="Cameron Lee's personal site. This place is used to host my portfolio, personal blog, projects, contact, anything that I might want to put out to the world.">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cascadia Code">
+  <link href="/css/style.css" rel="stylesheet">
+  <link href="/css/blog-search.css" rel="stylesheet">
+</head>
+  <script src="/js/script.js"></script>
+  <script src="/js/table.js"></script>
+<header>
+  <div id="top-line"></div>
+  <div id="nav-container">
+    <div id="logo">CAMERON LEE</div>
+    <ul id="navbar">
+        <div id="menuBtn" class="animatedico" onclick="menuIconAnim(this)">
+            <div class="ln1"></div>
+            <div class="ln2"></div>
+            <div class="ln3"></div>
+        </div>
+        <li><a href="../index.html">HOME</a></li>
+        <li>/</li>
+        <li><a href="index.html">PROJECTS</a></li>
+        <li>/</li>
+        <li><a href="../pages/blog.html" style="color:white;">BLOG</a></li>
+        <li>/</li>
+        <li><a href="index.html">ABOUT</a></li>
+        <li>/</li>
+        <li><a href="index.html">CONTACT</a></li>
+    </ul>
+  </div>
+</header>
+
+<body>
+    <div class="blogs">
+        <div class = "input-box">
+            <input type="text" id="input" onkeyup="tableSearch()" placeholder="Search for blogs...">
+            <button id="clearButton" onclick="clearSearch()" style="display:none;">✕</button>
+        </div>        
+        <ul id="myUL">
+            <li>
+                <a href="#">My First Blog!
+                    <div class="caption">Hello World!</div>
+                    <div id="tags">
+                        <button onclick="selectTag('#WebDev')">#WebDev</button>
+                        <button onclick="selectTag('#Blogs')">#Blogs</button>
+                    </div>
+                </a> 
+            </li>
+             <li>
+                <a href="#">Blog in Progress
+                    <div class="caption">Filler blog for test purposes, let's pretend this is about C++</div>
+                    <div id="tags">
+                        <button onclick="selectTag('#c++')">#C++</button>
+                        <button onclick="selectTag('#Blogs')">#Blogs</button>
+                    </div>
+                </a> 
+            </li>
+        </ul> 
+    </div>
+</body>
