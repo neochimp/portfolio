@@ -60,8 +60,9 @@ a{
   position: fixed;
   top: 0;
   right: 0;
-  font-size: 2rem;
+  font-size: 2em;
   transform: skewX(30deg) translateX(0.65em); /* default skew */
+  height: 2em;
 }
 
 #navbar li {
@@ -94,6 +95,9 @@ body {
   padding: 1em 10em 3em;
 }
 
+.main .textbox {
+  width: 70%;
+}
 .textbox {
   width: 100%;
   padding: 2em;
@@ -139,7 +143,7 @@ body {
 
 .recents {
   position: fixed;
-  top: 7em; /* same as body padding-top */
+  top: 9em; /* same as body padding-top */
   left: 70%; /* gap between boxes */
   width: 30%;
   padding-left: 2.5em;
@@ -172,20 +176,30 @@ body {
   text-decoration: underline;
 }
 
+#mobileMenu {
+  visibility: hidden;
+}
 
 
 /* ========== Override styles for small screens ========== */
 
 @media screen and (max-width: 75em) {
-  ul {
+  #navbar {
+      width: 4em;
+  }
+
+  #navbar ul {
     width: 6%;
     transform: skewX(30deg) translateX(10%);
   }
 
-  li {
+  #navbar li {
     display: none;
   }
 
+  #menuBtn{
+    margin-top: 0.1em;
+  } 
   .ln1, .ln2, .ln3 {
     width: 100%;
     height: 10%;
@@ -195,7 +209,7 @@ body {
   }
 
   .change .ln1 {
-    transform: translate(0, 200%) rotate(-45deg);
+    transform: translate(0, 220%) rotate(-45deg);
   }
 
   .change .ln2 {
@@ -207,19 +221,26 @@ body {
   }
 
   .animatedico {
-    transform: skewX(-30deg) translateY(5%);
+    transform: skewX(-30deg) translateY(10%);
     position: relative;
     display: inline-block;
     cursor: pointer;
     right: 4%;
-    width: 5vh;
-    height: 5vh;
+    width: 2em;
+    height: 2em;
     padding: 0;
     object-fit: contain;
     align-items: center;
     justify-content: center;
   }
 
+  .main {
+    padding: 1em;
+  }
+
+  .main .textbox {
+    width: 100%;
+  }
   .textbox {
     width: 100%;
     margin-right: 0;
@@ -231,6 +252,42 @@ body {
     left: auto;
     top: auto;
     padding-inline-start: 3em;
+  }
+
+  #mobileMenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 40%;
+    background-color: var(--mainColor);
+    overflow-x: hidden;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    visibility:visible;
+  }
+
+  #mobileMenu ul li a {
+   color: var(--bgColor);
+    text-decoration: none;
+  }
+  #mobileMenu ul {
+    list-style: none;
+    text-align: left;
+    margin-top: 3.5em;
+  }
+
+  #mobileMenu li {
+    padding: 0.5em;
+    font-size: 2em;
+  }
+
+  #mobileMenu li a:hover {
+  color: white;
+}
+
+  #mobileMenu.open {
+    transform: translateX(0);
   }
 }
 
