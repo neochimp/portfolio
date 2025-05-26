@@ -63,6 +63,7 @@ a{
   font-size: 2em;
   transform: skewX(30deg) translateX(0.65em); /* default skew */
   height: 2em;
+  align-items: center;
 }
 
 #navbar li {
