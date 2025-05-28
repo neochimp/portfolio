@@ -260,7 +260,7 @@ body {
     top: 0;
     right: 0;
     height: 100%;
-    width: 40%;
+    width: 20em;
     background-color: var(--mainColor);
     overflow-x: hidden;
     transform: translateX(100%);
