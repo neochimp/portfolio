@@ -17,7 +17,6 @@
     margin: 0;
 }
 
-
 #myUL li {
     border-bottom: 1px solid #00ab8073;
     width: 60%;
@@ -74,8 +73,8 @@
 
 #input {
     background-image: url('/images/search-icon.png'); /* Add a search icon to input */
-    background-position: 0.4em 0.9em; /* Position the search icon */
-    background-size: 2%;
+    background-position: 0.6em, 50%;
+    background-size: 1em;
     background-repeat: no-repeat; /* Do not repeat the icon image */
     width: 100%; 
     font-size: 1em;
@@ -85,7 +84,7 @@
 #clearButton {
     position: absolute;
     top: 10%;
-    left: 96%;
+    right: 0.4em;
     border: none;
     background: none;
     font-size: 2em;
