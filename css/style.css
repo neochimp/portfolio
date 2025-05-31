@@ -97,7 +97,16 @@ body {
 }
 
 .main .textbox {
-  width: 70%;
+  margin: auto;
+}
+
+.home {
+  margin-right: auto;
+}
+
+
+.home {
+  width: 78%;
 }
 .textbox {
   width: 100%;
@@ -237,6 +246,7 @@ body {
 
   .main {
     padding: 1em;
+    margin: auto;
   }
 
   .main .textbox {
