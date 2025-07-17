@@ -211,6 +211,14 @@ img {
    font-size: 0.8em;
 }
 
+.desc {
+   text-align: left;
+   font-style: italic;
+   padding-top: 0.5em;
+   color:#949494;
+   font-size: 0.8em;
+}
+
 /* ========== Override styles for small screens ========== */
 
 @media screen and (max-width: 75em) {
