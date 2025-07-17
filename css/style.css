@@ -259,11 +259,14 @@ img {
   }
 
   .main {
-    padding: 1em;
+    padding: 0.3em;
     margin: auto;
   }
 
-  .main .textbox {
+  .home {
+    width: 100%;
+  }
+  .main .textbox{
     width: 100%;
   }
   .textbox {
@@ -277,6 +280,11 @@ img {
     left: auto;
     top: auto;
     padding-inline-start: 3em;
+    padding-right: 3em;
+  }
+
+  .title {
+    width: 100%;
   }
 
   #mobileMenu {
