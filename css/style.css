@@ -144,6 +144,7 @@ body {
 
 .it{
   font-style: italic;
+  display: inline-block;
 }
 
 .cent{
@@ -190,6 +191,19 @@ body {
   visibility: hidden;
 }
 
+img {
+  display: block;
+  margin: auto;
+  padding-top: 2em;
+}
+
+.caption {
+   text-align: center;
+   font-style: italic;
+   padding-top: 0.5em;
+   color:#949494;
+   font-size: 0.8em;
+}
 
 /* ========== Override styles for small screens ========== */
 
