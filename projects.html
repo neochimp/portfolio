@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cascadia Code">
     <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/projects.css" rel="stylesheet">
     <script src="/js/script.js"></script>
 </head>
 
@@ -48,9 +49,66 @@
 </header>
 
 <body>
-    <div class="main">
-        <div class="textbox">
-            <div class="title cent">This page is a work in progress!!</div>
+    <div class="projects-box">
+      <div class="projects">
+
+        <div class="project">
+          <button type="button" class="collapsible">
+            <img src="images/thumbnails/roboracer.png" alt="F1Tenth thumbnail" class="thumb">
+            <div class="text-wrap">
+              <div>F1Tenth Racecar (Senior Capstone)</div>
+              <div class="caption">Autonomous 1/10th-scale racecar built for real-time control and perception.</div>
+            </div>
+          </button>
+          <div class="content textbox">
+            <div class="text">
+              For my senior capstone project, I am currently in a team designing an autonomous F1Tenth racecar capable of 
+              navigating complex tracks in real-time using odometry, LiDAR, and camera data. Our focus was on developing ROS 2 nodes
+              for localization, obstacle avoidance, and path tracking. I am currently working on improving the vehicle's
+              control system by tuning the existing Stanley controller and researching more advanced approaches such as 
+              model predictive control and hybrid control architectures in order to achieve smoother and more reliable performance
+              at high speeds.
+            </div>
+          </div>
         </div>
+
+        <div class="project">
+          <button type="button" class="collapsible">
+            <img src="images/thumbnails/apeocalypse.png" alt="APEocalypse thumbnail" class="thumb">
+            <div class="text-wrap">
+              <div>APEocalypse</div>
+              <div class="caption">Assemble your mightiest team to defeat the gorilla army!</div>
+            </div>
+          </button>
+          <div class="content textbox">
+            <div class="text">
+              Highly intelligent primates have escaped a secret research facility and they don't seem too friendly. 
+              Lucky for us we have a time machine! Build a team consisting of 10 historical figures, each with unique
+              strengths, and survive for as long as you can. APEocalypse is a 2D arcade autobattler loosely based on
+              the discussion of who would win between 100 men vs 1 gorilla. I built this project in Unity for my game 
+              design class and created all of the assets and functionality independently.
+            </div>
+          </div>
+        </div>
+
+
+      </div>
     </div>
 </body>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
