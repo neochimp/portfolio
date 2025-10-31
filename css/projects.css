@@ -1,0 +1,88 @@
+:root{
+  --mainColor: #00ab80;
+  --bgColor: #242424;
+}
+
+/*stuff for the dropdown text*/
+ /* Style the button that is used to open and close the collapsible content */
+
+.projects-box {
+  padding: 1em;
+  margin-top: 3em;
+}
+
+.projects {
+  padding-top: 2em;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+
+.project {
+  border-bottom: 1px solid #00ab8073;
+}
+
+.collapsible {
+  width: 100%;
+  text-align: left;
+  padding: 0.5em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  font-size: 2em;
+  display: flex;
+  align-items: center;
+  gap: 0.75em;
+  color: white;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  font-family: inherit;
+  color: var(--mainColor);
+}
+
+.collapsible:hover {
+  background-color: rgb(41, 48, 47);
+}
+
+.collapsible .thumb{
+  width: 3em;
+  height: 3em;
+  object-fit: cover;
+  border-radius: 0.5em;
+  flex: 0 0 3em;
+  border-radius: 0;
+}
+
+.collapsible .text-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0em;
+  display: none;
+  overflow: hidden;
+  margin-bottom: 0.5em;
+  padding-left: 4em;
+  padding-right: 4em;
+  padding-bottom: 1em;
+}
+
+.collapsible .caption {
+  font-size: 0.7em;
+  margin-top: 0.5em;
+  margin-bottom: 0;
+  color: rgb(179, 179, 179);
+}
+
+.project .content .text::before,
+.project .content .text::before {
+  content: "> ";
+}
+
+
+
