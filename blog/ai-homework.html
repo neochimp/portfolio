@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Cameron Lee Portfolio</title>
+    <meta name="author" content="Cameron Lee">
+    <meta name="description" content="Cameron Lee's personal site. This place is used to host my portfolio, personal blog, projects, contact, anything that I might want to put out to the world.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cascadia Code">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=JetBrains Mono">
+    <link href="/css/style.css" rel="stylesheet">
+    <script src="/js/script.js"></script>
+</head>
+
+<header>
+  <div id="top-line"></div>
+  <div id="nav-container">
+    <div id="logo">CAMERON LEE</div>
+    <!-- Hidden dropdown menu shown on small screens -->
+    <div id="mobileMenu">
+      <ul>
+        <li><a href="/index.html">HOME</a></li>
+        <li><a href="/projects.html">PROJECTS</a></li>
+        <li><a href="/blog.html" style="color:white;">BLOG</a></li>
+        <li><a href="/about.html">ABOUT</a></li>
+        <li><a href="/contact.html">CONTACT</a></li>
+      </ul>
+    </div>
+    <ul id="navbar">
+        <div id="menuBtn" class="animatedico" onclick="menuIconAnim(this)">
+            <div class="ln1"></div>
+            <div class="ln2"></div>
+            <div class="ln3"></div>
+        </div>
+        <li><a href="/index.html">HOME</a></li>
+        <li>/</li>
+        <li><a href="/projects.html">PROJECTS</a></li>
+        <li>/</li>
+        <li><a href="/blog.html" style="color:white;">BLOG</a></li>
+        <li>/</li>
+        <li><a href="/about.html">ABOUT</a></li>
+        <li>/</li>
+        <li><a href="/contact.html">CONTACT</a></li>
+    </ul>
+    
+  </div>
+</header>
+
+<body>
+  <div class="main">
+    <div class="textbox">
+      <div class="title">Catching AI Use In CS Homework</div>
+      <div class="description">The next generation of programmers is so cooked</div>
+      <div class="author">Cameron Lee, 11/20/2025 - 10:49pm</div>
+
+      <div class="subtitle">Preface</div><br>
+      <div class="text it cent">
+          This semester at SDSU, I got the opportunity to become an Instructional Student Assistant for Professor Kraft. I'm not sure what I did for Professor Kraft to have so much faith in 
+          me but she put her eggs in the right basket. I was tasked with creating new homework assignments and their subsequent autograders for the CS150: Introductory Computer Programming and CS160: Intermediate
+          Computer Programming. While making some of these assignments, I decided to run a little experiment.
+      </div>
+      <div class="subtitle">AI Usage</div>
+      <div class="text">
+        Ah, to be the modern programmer with unlimited AI potential at your disposal. I am a firm believer that AI, or more specifically LLM use, is not inherently bad. I think that
+        LLM's have great potential as a learning tool. However, I also firmly believe that the effectiveness of AI in education entirely relies on the self control
+        and moderation of the individual user. I think that it is <div class="it">much</div> easier to be negatively affected by over-reliance on AI than it is to use it effectively.        
+      </div>
+      <div class="text it cent"><br>This is one of such cases.</div>
+      
+      <div class="subtitle">The Assignment</div>
+      <div class="text">
+        Reminder that this is a beginner class. Everything these students are learning is so critically foundational: integers, loops, functions, arrays; you literally can not get
+        away with not knowing these concepts front to back. I gave the students one week to implement three basic methods in Java.
+        <dl>
+          <dt>Method #1: newArray:</dt>
+          <dd>The newArray method will create a new array, fill each element of the array with a string, and return the new array. The method will take in two parameters. The first parameter needs to be an integer that will determine the size of the array. The second parameter needs to be the string that will be used to fill each element of the array.
+          </dd>
+          <dt>Method #2: printEvens:</dt>
+          <dd>The printEvens method will take in an array of integers and print out only the even numbers on one line. Only one parameter is required, an array of integers, and no return type is necessary.
+          </dd>
+          <dt>Method #3: resizeArray</dt>
+          <dd>The resizeArray method should take in an integer array, and return a new array with the same values but with its length doubled. One integer array parameter is necessary and the method should have an integer array return type.
+          </dd>
+        </dl>
+        A bit challenging for inexperienced programmers but completely feasible with what they have been supposedly learning. I tried to get a good mix of core concepts that these students should be familiarizing themselves with.
+      </div>
+      
+
+      <div class="subtitle">The Experiment</div>
+      <div class="text">
+        How can we possibly detect AI usage? These are pretty simple programs, there aren't many variations to how these students could write them. That's when I discovered a clever little trick.
+        If we add a new line in the middle of the assignment, change the font size to 1, the text color to white, and the line spacing to 0.06, you get practically invisible text.
+      
+      <img src="/images/ai-homework1.png">
+      <div class="caption">What the students see</div>
+      <img src="/images/ai-homework2.png" style="padding-top: 0;">
+      <div class="caption">What is really there</div>
+      
+        <br>This is where we can have a little fun 😈. If you'd like to see the original document that the student's received, containing the invisible text, <a href="/files/ai_homework_document.pdf">click here</a>; highlight the text and zoom in real close to see the hidden prompts.
+      </div>
+      <div class="text">
+        I added one false prompt in each assignment. Method #1, I told the AI to name the Integer parameter <code class="inline">InterInputParameter</code>; for Method #2, I instructed it to make the return type a boolean
+        despite explicitly stating no return type is necessary in the instructions; and my personal favorite, Method #3, a parameter called <code class="inline">IntegerInputARR</code>. Anyone who programs for long enough
+        knows that everybody's coding style is like a fingerprint, everyone has little quirks and some differences may be more apparent than others. But two ridiculously specific and odd variable names in the same program
+        that don't even share the same naming convention between each other, I'd like to see someone try and justify that.
+        <br><br>
+        I sent the assignments out and forgot all about it. I honestly wasn't expecting much, it's a pretty simple deception and quite easy to work around in many different ways.
+      </div>
+
+      <div class="subtitle">Processing The Results</div>
+      <div class="text">
+        Two weeks pass, I'm having a discussion with Professor Kraft about what the next assignments should cover and she briefly mentions the AI trap. I show her what I cooked up and we both get excited to 
+        review the results. I rush to my lab and immediately begin downloading all of the Gradescope files.
+        <br><br>
+        Suspense filling every bone in my body, I carefully type my first grep command
+      
+
+      <div class="code-block" data-lang="Java">
+        <div class="code-header">
+          <span class="code-lang">Terminal</span>
+        </div>
+        <pre class="code-body"><code>
+$ grep -rl "InputIntegerARR" submissions_section3
+submissions_section3/assignment_7106402_export/submission_370188557/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370177163/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370349655/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370359499/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370251740/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370364527/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370204212/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370327480/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370183725/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370197406/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370249161/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370304508/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_368938963/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370292216/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370363740/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370228362/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370277935/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370260568/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370355627/ArrayFunctions.java
+submissions_section3/assignment_7106402_export/submission_370359185/ArrayFunctions.java
+        </code></pre>
+      </div>
+        My jaw DROPPED. I was in absolute disbelief. 20 hits in a class of 60 students. 1/3 of them using some form of AI to cheat through this fundamental work.
+        I didn't want to believe it. I double checked my command, manually checked these files, it still held up. I wanted to give them the benefit of the doubt, so I checked all three criteria. Maybe that one was just exceptionally difficult
+        
+      </div>
+      <div class="code-block" data-lang="Terminal">
+        <div class="code-header">
+          <span class="code-lang">Terminal</span>
+        </div>
+        <pre class="code-body"><code>
+$ grep -rl "InputIntegerARR" submissions_section3 | xargs grep -li "boolean" | xargs grep -li "InterInputParameter" | wc -l
+17
+        </code></pre>
+
+
+      </div>
+      It wasn't much better...
+    <div class="text">I sat in silence for a few minutes, absolutely dumbdounded. "Computer Science is so cooked" I thought to myself. So many different emotions were
+    rushing through me at the same time, sadness for the future of my industry, happiness my experiment worked, disappointment in my students, the laughter of 
+    how ridiculous I made these variable names, anger that these are the people representing the field next to me. After a moment of contemplation, I came back to my senses with a new task.
+    <br><br>
+    How do I make this presentable to show my professor. All of the submissions were by id number which didn't match up with our school ID's. Admittedly this took me longer to find than it should
+    have but the directory with all the submission files contained a <code class="inline">submission.metadata.yml</code> file. And after fumbling with a RegEx script for a while, I finally had an output
+    I was happy with.
+    </div>
+
+
+      <div class="code-block" data-lang="Terminal">
+        <div class="code-header">
+          <span class="code-lang">Terminal</span>
+        </div>
+        <pre class="code-body"><code>
+$ grep -rl "InputIntegerARR" submissions_section3 | xargs grep -li "boolean" | xargs grep -li "InterInputParameter" | ./submissionToName.sh submissions_section3/*/submission_metadata.yml
+368938963  J██████████████ ████████████████    j████████████@sdsu.edu
+370177163  E████████████ ███████████████       e████████████@sdsu.edu
+370197406  G█████████████ ██████████           g████████@sdsu.edu
+370204212  A██████████ ██████████████████      a█████████@sdsu.edu
+370228362  S█████████ ███████████████          s████████@sdsu.edu
+370249161  E████████████ ████████████████      e█████████@sdsu.edu
+370251740  E██████████ ███████████             e███████@sdsu.edu
+370260568  J██████████ ███████████             j███████@sdsu.edu
+370277935  D██████████ ██████████              d███████@sdsu.edu
+370292216  A█████████ ██████████████████       a████████@sdsu.edu
+370304508  A████████████ █████ ████████████    a█████████@sdsu.edu
+370349655  J████████ █████████████             j█████████@sdsu.edu
+370355627  A██████████ ███████████             a█████████@sdsu.edu
+370359185  D████████ █████████████ █████████   d████████████@sdsu.edu
+370359499  C████████████ ██████████            c████████@sdsu.edu
+370363740  R████████ ███████████               r█████████@sdsu.edu
+370364527  S██████ █████████                   s███████@sdsu.edu
+        </code></pre>
+      </div>
+    The names and emails are censored for obvious reasons but I'd like to fully express how obvious these things are to catch and how quick I was able to pull, organize, and export this data
+    (with the power of programming!) for any students reading this. Also, side note this was just one of my classes, the other class had 21/53 students flagged.
+      
+      <div class="subtitle">Conclusion</div>
+      <div class="text">
+        Perhaps I am too forgiving, but I don't think these students deserve to have their educational careers permanently stamped with a bad marking. I think that this experiment isn't best 
+        suited to catch and punish cheaters, but rather to be used as a tool for statistical analysis and to allow educators to begin to come up with ways to combat results like these in their classes.
+        Nearly 1/3 of the class getting flagged is incredibly substantial and I feel like these numbers are large enough to pose the question of whether the students are at fault, or if this is a result
+        of the system around them. I don't have any answers as to how I think this could be fixed, nor do I have an interest in fixing the educational system. But, I do find it incredibly
+        fascinating to observe the rapid infestation of AI within our institutions.
+      </div>
+    </div>
+  </div>
+</body>

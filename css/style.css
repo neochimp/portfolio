@@ -305,6 +305,98 @@ img {
   color: white;                   /* light up on hover */
 }
 
+.textbox dl {
+  margin: 1.25em 0;                 /* space from surrounding text */
+  padding: 0 0 0 1em;               /* indent the list a bit */
+  border-left: 3px solid var(--mainColor);
+}
+
+.textbox dt {
+  margin-top: 1em;                  /* space above each title */
+  font-weight: 700;
+  color: var(--mainColor);
+  font-size: 1em;                    /* inherits .textbox size; keep titles same scale */
+  line-height: 1.4;
+}
+
+.textbox dd {
+  margin: 0.25em 0 0.75em 0.75em;   /* small gap under title + slight indent */
+  color: rgb(200, 200, 200);
+  font-size: 0.9em;                  /* a touch smaller than body text */
+  line-height: 1.6;
+}
+
+/* Optional: compact the very first dt slightly */
+.textbox dl :first-child {
+  margin-top: 0.5em;
+}
+
+/*stylings for putting blocks of code*/
+/* Container */
+.code-block {
+  margin: 1.25em 0;
+  border: 1px solid #00ab8073;         /* faint mint border */
+  border-radius: 10px;
+  background: #1b1b1b;                  /* dark card */
+  overflow: hidden;
+}
+
+/* Header */
+.code-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: .5em .75em;
+  background: #141414;
+  border-bottom: 1px solid #00ab8073;
+}
+
+.code-lang {
+  font-weight: 700;
+  color: var(--mainColor);
+  letter-spacing: .02em;
+}
+
+
+/* Code body */
+.code-body {
+  margin: 0;
+  padding: 0.2em 2em;
+  overflow-x: visible;                        /* scroll if long */
+  white-space: pre-wrap;                     /* preserve formatting */
+  word-break: break-word;
+}
+
+.code-body code {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .95em;
+  line-height: 1.55;
+  color: #e8e8e8;
+}
+
+/* Optional: soft vertical rhythm inside .textbox */
+.textbox .code-block { margin-left: 0; margin-right: 0; }
+
+/* Inline code in paragraphs */
+code.inline {
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .9em;
+  color: var(--mainColor);
+  background: #1b1b1b;
+  border: 1px solid #00ab8073;
+  border-radius: 6px;
+  padding: .05em .35em;
+}
+
+/* Tight variant if you want two blocks closer together */
+.code-block.tight { margin: .75em 0; }
+
+.mask {
+  color: var(--mainColor);      /* tints the █ characters */
+  font-family: 'Cascadia Code', monospace;
+  letter-spacing: 0.02em;
+}
+
 /* ========== Override styles for small screens ========== */
 
 @media screen and (max-width: 75em) {
