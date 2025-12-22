@@ -44,6 +44,7 @@
 }
 
 .collapsible:hover {
+  transition: 0.2s;
   background-color: rgb(41, 48, 47);
 }
 

@@ -78,6 +78,7 @@ a{
 }
 
 #navbar li a:hover {
+  transition: 0.2s;
   color: white;
 }
 
@@ -185,6 +186,7 @@ body {
 }
 
 .project-link a:hover {
+  transition: 0.2s;
   color: white;
   text-decoration: underline;
 }
@@ -259,6 +261,7 @@ img {
 }
 
 .contact-row:hover {
+  transition: 0.2s;
   background-color: rgb(41, 48, 47);
 }
 
@@ -304,6 +307,7 @@ img {
 }
 
 .contact-row:hover .icon {
+  transition: 0.2s;
   color: white;                   /* light up on hover */
 }
 
@@ -510,6 +514,7 @@ code.inline {
   }
 
   #mobileMenu li a:hover {
+  transition: 0.2s;
   color: white;
 }
 
