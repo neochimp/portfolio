@@ -50,19 +50,93 @@
 <body>
   <div class="main">
     <div class="textbox">
-      <div class="title">Real-Time Linux Kernel Scheduling</div>
-      <div class="description">Implementing</div>
+      <div class="title">Real-Time Task Reservations and Scheduling in Linux</div>
+      <div class="description">Baby's first steps into kernel development</div>
       <div class="author">Cameron Lee, 12/21/2025 - 11:18pm</div>
 
       <div class="subtitle">Preface</div><br>
       <div class="text it cent">
-        This file serves as a template for the blog posts
-      </div>
-      <div class="subtitle">Section 1</div>
-      <div class="text">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac orci eget tortor dapibus suscipit. Etiam maximus iaculis faucibus. In non sem vel massa dictum malesuada. Nulla egestas vitae lorem eu fermentum. Suspendisse at risus placerat, varius felis at, pulvinar dui. Nullam nec augue leo. Proin tristique vestibulum justo sit amet aliquam. Sed consectetur facilisis molestie. Proin lectus velit, mattis in pharetra vitae, gravida non nunc. Aliquam cursus lectus in luctus posuere. In vitae rhoncus purus. Phasellus egestas scelerisque sodales. 
+        One of the most challenging and interesting classes I've taken at SDSU is Dr. Hyunjong Choi's Theory Of Real-Time Systems course.
+        As part of this class, I modified the Linux kernel to support explicit real-time task reservations, periodic execution, and end-to-end latency 
+        monitoring. While Linux supports several real-time scheduling mechanisms, implementing textbook real-time scheduling models required working directly
+        with core kernel structures such as <div class="it">task_struct</div>, scheduler hot paths, and kernel timers. Using custom kernel system calls, I implemented
+        Rate Monotonic scheduling and partitioned Earliest Deadline First scheduling across multiple CPU cores. This post focuses less on scheduling theory 
+        and more on what building these features revealed about how the Linux kernel represents tasks and enforces behavior across context switches.
       </div>
 
+      <div class="subtitle">Background</div>
+      <div class="text">
+        This project uses classic real-time models, with tasks that are periodic and declare a computation budget <div class="it">C</div> and a period <div class="it">T</div>.
+        Schedulability depends on whether the kernel can allocate CPU time to all tasks without violating these constraints.
+        <br><br>
+        Enforcing this model in Linux required more than just choosing a scheduling policy. It meant tracking execution time across context switches, associating timing state with
+        each task, and integrating kernel timers into the task lifecycle. These requirements pushed the project into core kernel structures and scheduler hot paths, which 
+        became the primary learning focus for me. 
+      </div>
+
+      <div class="subtitle"><code class="inline">task_struct</code>: Where Everything Eventually Leads Back To</div>
+      <div class="text">
+        Section about the task_struct and how everything revolves around this. Talk about how every task uses this, how important it is, what new things did i need to add to it
+        talk about it. Dont have to mention every new thing just why it had to be in there. WOW moment how it surprised me how massive the struct is and how i didn't realize structs could even be that big
+      </div>
+
+      <div class="subtitle">Crossing The Boundary Between User and Kernel</div>
+      <div class="text">
+        How i added custom system calls, how error handling feels different in kernel code (unsure what to write about this), talk about the frustration with the system call table needing to be in increments of four and me not realizing this for a long time.
+        Maybe mention how i used modules to make it easier to implement kernel code functionality (keep this brief). Talk about how defining the kernel system call is very different from a function (SYSCALL_DEFINE6 or whatever)
+        can mention how we needed a function with 7 parameters for chain information but 6 is the limit so i had to convert to a void pointer to a chain_struct (consider if chain stuff is worth having its own section)
+      </div>
+
+      <div class="subtitle">Context Switches and Time Accounting</div>
+      <div class="text">
+        Where I hooked exectution tracking into the scheduler, how context switches work in context, how this changed my mental model of a running task Why time is measured at schedule in and schedule out (tasks is only running between in and out)
+        there is no continuous timer per task, time accounting is inferred, nto observed
+      </div>
+
+      <div class="subtitle">Scheduler Hot Paths</div>
+      <div class="text">
+        explain what hot paths are, how they run constnatly, how small mistakes propagate everywhere, and how debugging here is brutal. Transition for next
+      </div>
+
+      <div class="subtitle">The Bug That Bricked My Raspberry Pi</div>
+      <div class="text">
+        (WIP) Missing null check in kernel/sched/core.c, how it affected every task not just mine. Symptoms failed to boot, no clear error, system unusuable. 
+        Talk about emotional arc: confusion panic talk about how i thought it was a serial connection or a hardware issue and that i had to find a monitor and kbm to verify 
+        it wasnt that and how after a while of frustration i realized it and fixed it. Mention the very this must be my fault moment
+        Taught me that kernel has no safety net, one uncheked pointer can kill the entire system, 
+      </div>
+
+      <div class="text">
+        After hours of debugging, reflashing, and second-guessing the hardware, the process started feeling less like engineering and more like faith. Recompile. Reboot. Wait. Stare. Hope. 
+        Emotionally, the night felt like I was in Las Vegas hoping that one more pull of the slot machine would finally pay out. Same ritual, different casino.
+        (embed video here) caption: Recompiling th ekernel feels statistically indistinguishable from gambling.
+      </div>
+
+      <div class="subtitle">Debugging in the Kernel Is a Different Beast</div>
+      <div class="text">
+        (WIP) Slow compile times, long reboot cycles, limited feedback, importance of setting things up correctly the first time. Punishes carelessness and rewards understanding the full system and planning for it
+      </div>
+      <div class="text">
+        Early on, every kernel change meant manually copying the configuration, mounting the target fielsystem, backing up the kernel image, cross-compiling, loading modules, and unmounting
+        everything again. It worked, but each iteration added friction, and debugging became as much about patience as correctness. 
+      </div>
+      <div class="text">
+        Eventually, I realized the real problem wasn't in the kernel code itself, but the cost of each iteration. I scripted the entire process into a single command, turning minutes of careful repetition into one line.
+        That small change dramatically reduced the overhead of experimentation and made it easier to focus on the code instead of the process.
+      </div>
+
+      <div class="subtitle">How This Changed the Way I Write Code</div>
+      <div class="text">
+        Being more delibarte about structure. thinking about cleanup paths early (what happens when something dails halfway, what happens when a task exits, what happens when a rsv is cancelled, what happens 
+        whtn the kernel shuts dwon. "if this fails halfway what state am i leaving behind/" talk abt canceling timers, freeing memory, resetting task_struct fields), writing
+        code assuming future me will debug it like including VERBOSE variable printouts for dmesg right after adding a new thing rather than waiting for it to go wrong and 
+        going back to print out whatever it is i THINK might be messed up. how these translate into user-space programming
+      </div>
+
+      <div class="subtitle">Conclusion</div>
+      <div class="text">
+        What the project gave me, what i now notice when reading kernel code, sparking my interest in kernel development and doing more mid level work liket his. end on curiosity
+      </div>
     </div>
   </div>
 </body>
