@@ -332,25 +332,15 @@
           itself, but the minor inefficiencies at every turn. I scripted the
           entire process into a single command, turning minutes of repetitive
           monotony into one line. That small change dramatically reduced the
-          overhead of each iteration and made it easier to focus on the content
-          of the code instead of wasting time on the just running the code.
+          overhead of each iteration and made it easier to focus more on writing
+          the code and less on running the code.
         </div>
 
-        <div class="subtitle">How This Changed the Way I Write Code</div>
+        <div class="subtitle">How This Changed My Work</div>
         <div class="text">
-          Being more delibarte about structure. thinking about cleanup paths
-          early (what happens when something dails halfway, what happens when a
-          task exits, what happens when a rsv is cancelled, what happens whtn
-          the kernel shuts dwon. "if this fails halfway what state am i leaving
-          behind/" talk abt canceling timers, freeing memory, resetting
-          task_struct fields), writing code assuming future me will debug it
-          like including VERBOSE variable printouts for dmesg right after adding
-          a new thing rather than waiting for it to go wrong and going back to
-          print out whatever it is i THINK might be messed up. how these
-          translate into user-space programming
-          <br />I learned a (pardon my french) sh*t ton in this project, I would
-          say this project might be top 3 as far as impact to my development as
-          a programmer. I had to learn how to be more deliberate with my
+          I learned a (pardon my french) sh*t ton in this project, I would say
+          this project is at least top 3 impact to my development as a
+          programmer. I had to learn how to be more deliberate with my
           structure; Think about cleanup paths early, asking questions like "if
           this fails halfway what state am I leaving behind?"; Make sure I'm
           maintaining everything properly: canceling timers, freeing memory,
@@ -359,9 +349,13 @@
           go, rather than going back and adding print statements everywhere
           after it breaks (I found myself recompiling the kernel multiple times
           just because I needed to make my printouts more readable for myself).
-          All of these tough lessons are just as applicable in the user-space
-          and forming good habits like these is how I can push myself to be the
-          best, no matter the field.
+
+          <br /><br />
+          The kernel has no safety net, and learning to work without one
+          reshaped how I write code everywhere else. I'm much more deliberate,
+          cautious, and better at breaking down large complex problems. These
+          habits spread across all domains, and they're something I'll carry
+          forward for the rest of my career.
         </div>
 
         <img src="/images/real-time-systems-git.png" />
