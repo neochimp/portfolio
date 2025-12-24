@@ -1,142 +1,374 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Blog: Real Time Linux Scheduler</title>
-    <meta name="author" content="Cameron Lee">
-    <meta name="description" content="Implementing Real-Time Reservations in the Linux Kernel">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cascadia Code">
-    <link href="/css/style.css" rel="stylesheet">
+    <meta name="author" content="Cameron Lee" />
+    <meta
+      name="description"
+      content="Implementing Real-Time Reservations in the Linux Kernel"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Oswald"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Cascadia Code"
+    />
+    <link href="/css/style.css" rel="stylesheet" />
     <script src="/js/script.js"></script>
-</head>
+  </head>
 
-<header>
-  <div id="top-line"></div>
-  <div id="nav-container">
-    <div id="logo">CAMERON LEE</div>
-    <!-- Hidden dropdown menu shown on small screens -->
-    <div id="mobileMenu">
-      <ul>
-        <li><a href="/index.html">HOME</a></li>
-        <li><a href="/projects.html">PROJECTS</a></li>
-        <li><a href="/blog.html" style="color:white;">BLOG</a></li>
-        <li><a href="/about.html">ABOUT</a></li>
-        <li><a href="/contact.html">CONTACT</a></li>
-      </ul>
-    </div>
-    <ul id="navbar">
+  <header>
+    <div id="top-line"></div>
+    <div id="nav-container">
+      <div id="logo">CAMERON LEE</div>
+      <!-- Hidden dropdown menu shown on small screens -->
+      <div id="mobileMenu">
+        <ul>
+          <li><a href="/index.html">HOME</a></li>
+          <li><a href="/projects.html">PROJECTS</a></li>
+          <li><a href="/blog.html" style="color: white">BLOG</a></li>
+          <li><a href="/about.html">ABOUT</a></li>
+          <li><a href="/contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+      <ul id="navbar">
         <div id="menuBtn" class="animatedico" onclick="menuIconAnim(this)">
-            <div class="ln1"></div>
-            <div class="ln2"></div>
-            <div class="ln3"></div>
+          <div class="ln1"></div>
+          <div class="ln2"></div>
+          <div class="ln3"></div>
         </div>
         <li><a href="/index.html">HOME</a></li>
         <li>/</li>
         <li><a href="/projects.html">PROJECTS</a></li>
         <li>/</li>
-        <li><a href="/blog.html" style="color:white;">BLOG</a></li>
+        <li><a href="/blog.html" style="color: white">BLOG</a></li>
         <li>/</li>
         <li><a href="/about.html">ABOUT</a></li>
         <li>/</li>
         <li><a href="/contact.html">CONTACT</a></li>
-    </ul>
-    
-  </div>
-</header>
+      </ul>
+    </div>
+  </header>
 
-<body>
-  <div class="main">
-    <div class="textbox">
-      <div class="title">Real-Time Task Reservations and Scheduling in Linux</div>
-      <div class="description">Baby's first steps into kernel development</div>
-      <div class="author">Cameron Lee, 12/21/2025 - 11:18pm</div>
+  <body>
+    <div class="main">
+      <div class="textbox">
+        <div class="title">
+          Real-Time Task Reservations and Scheduling in Linux
+        </div>
+        <div class="description">
+          Baby's first steps into kernel development
+        </div>
+        <div class="author">Cameron Lee, 12/21/2025 - 11:18pm</div>
 
-      <div class="subtitle">Preface</div><br>
-      <div class="text it cent">
-        One of the most challenging and interesting classes I've taken at SDSU is Dr. Hyunjong Choi's Theory Of Real-Time Systems course.
-        As part of this class, I modified the Linux kernel to support explicit real-time task reservations, periodic execution, and end-to-end latency 
-        monitoring. While Linux supports several real-time scheduling mechanisms, implementing textbook real-time scheduling models required working directly
-        with core kernel structures such as <div class="it">task_struct</div>, scheduler hot paths, and kernel timers. Using custom kernel system calls, I implemented
-        Rate Monotonic scheduling and partitioned Earliest Deadline First scheduling across multiple CPU cores. This post focuses less on scheduling theory 
-        and more on what building these features revealed about how the Linux kernel represents tasks and enforces behavior across context switches.
-      </div>
+        <div class="subtitle">Preface</div>
+        <br />
+        <div class="text it cent">
+          One of the most challenging and interesting classes I've taken at SDSU
+          is Dr. Hyunjong Choi's Theory Of Real-Time Systems course. As part of
+          this class, I modified the Linux kernel to support explicit real-time
+          task reservations, periodic execution, and end-to-end latency
+          monitoring. While Linux supports several real-time scheduling
+          mechanisms, implementing textbook real-time scheduling models required
+          working directly with core kernel structures such as
+          <div class="it">task_struct</div>
+          , scheduler hot paths, and kernel timers. Using custom kernel system
+          calls, I implemented Rate Monotonic scheduling and partitioned
+          Earliest Deadline First scheduling across multiple CPU cores. This
+          post focuses less on scheduling theory and more on what building these
+          features revealed about how the Linux kernel represents tasks and
+          enforces behavior across context switches.
+        </div>
 
-      <div class="subtitle">Background</div>
-      <div class="text">
-        This project uses classic real-time models, with tasks that are periodic and declare a computation budget <div class="it">C</div> and a period <div class="it">T</div>.
-        Schedulability depends on whether the kernel can allocate CPU time to all tasks without violating these constraints.
-        <br><br>
-        Enforcing this model in Linux required more than just choosing a scheduling policy. It meant tracking execution time across context switches, associating timing state with
-        each task, and integrating kernel timers into the task lifecycle. These requirements pushed the project into core kernel structures and scheduler hot paths, which 
-        became the primary learning focus for me. 
-      </div>
+        <div class="subtitle">Background</div>
+        <div class="text">
+          This project uses classic real-time models, with tasks that are
+          periodic and declare a computation budget
+          <div class="it">C</div>
+          and a period
+          <div class="it">T</div>
+          . Schedulability depends on whether the kernel can allocate CPU time
+          to all tasks without violating these constraints. <br /><br />
+          Enforcing this model in Linux required more than just choosing a
+          scheduling policy. It required tracking execution time across context
+          switches, associating timing state with each task, and integrating
+          kernel timers into the task lifecycle. These requirements pushed the
+          project into core kernel structures and scheduler hot paths, which
+          became the primary learning focus for me.
+          <br /><br />
+          For development of this project I modified and compiled the Raspberry
+          Pi Kernel-4.9.80
+          <img src="/images/rpi.jpg" />
+          <div class="caption">CanaKit Raspberry Pi 3</div>
+        </div>
 
-      <div class="subtitle"><code class="inline">task_struct</code>: Where Everything Eventually Leads Back To</div>
-      <div class="text">
-        Section about the task_struct and how everything revolves around this. Talk about how every task uses this, how important it is, what new things did i need to add to it
-        talk about it. Dont have to mention every new thing just why it had to be in there. WOW moment how it surprised me how massive the struct is and how i didn't realize structs could even be that big
-      </div>
+        <div class="subtitle">
+          <code class="inline"
+            ><a
+              href="https://docs.huihoo.com/doxygen/linux/kernel/3.7/structtask__struct.html"
+              >task_struct</a
+            ></code
+          >: Where Everything Eventually Leads Back To
+        </div>
+        <div class="text">
+          The first thing I had to figure out was how to track all my new
+          information, like the budget and period. It needed to be something
+          that was intrinsically tied with the tasks themselves and would
+          persist between different states and changes. This eventually led me
+          to the monster that is the
+          <code class="inline">task_struct</code>. When I got to this point of
+          researching how this was put together I was WOW'd by how massive the
+          file was, I didn't even know structs could be that big. If you've ever
+          worked with anything relating to threads/processes in the Linux kernel
+          you know exactly what I'm talking about, it's basically unavoidable.
+          <br /><br />
+          For those who don't know, a quick tl;dr: the
+          <code class="inline">task_struct</code> is a gigantic struct with 300+
+          different fields (depending on the kernel version), with many of those
+          being other structs with more fields! The
+          <code class="inline">task_struct</code> is the DNA of every process in
+          Linux and has every single piece of information you'd want to know
+          about said process. There's a few different ways to access this
+          magical structure, for this project I used
+          <code class="inline"
+            ><a
+              href="https://docs.huihoo.com/doxygen/linux/kernel/3.7/pid_8c.html#af70fb3dc88568a19fbbc923e0e0e327b"
+              >find_task_by_pid_ns()</a
+            ></code
+          >
+          and
+          <code class="inline"
+            ><a
+              href="https://docs.huihoo.com/doxygen/linux/kernel/3.7/pid_8c.html#aa94fe396f2fa94f1ad5a869a8eea8244"
+              >task_active_pid_ns()</a
+            ></code
+          >
+          in order to get the struct using the task's pid and namespace.
+        </div>
 
-      <div class="subtitle">Crossing The Boundary Between User and Kernel</div>
-      <div class="text">
-        How i added custom system calls, how error handling feels different in kernel code (unsure what to write about this), talk about the frustration with the system call table needing to be in increments of four and me not realizing this for a long time.
-        Maybe mention how i used modules to make it easier to implement kernel code functionality (keep this brief). Talk about how defining the kernel system call is very different from a function (SYSCALL_DEFINE6 or whatever)
-        can mention how we needed a function with 7 parameters for chain information but 6 is the limit so i had to convert to a void pointer to a chain_struct (consider if chain stuff is worth having its own section)
-      </div>
+        <div class="subtitle">
+          Crossing The Boundary Between User and Kernel
+        </div>
+        <div class="text">
+          One of the coolest parts of the project was adding custom system calls
+          and realizing how different kernel code feels. At first I thought that
+          making system calls would be like making a normal function, but in
+          practice you have to be programming with extreme caution every step of
+          the way. The kernel has to treat everything with suspicion, arguments
+          from the userspace can't be trusted and there are no error cases that
+          can be ignored because continuing with a partially validated state
+          risks corrupting global kernel data.
+          <br /><br />
+          Even the mechanics of adding the system call was a headache. In order
+          to add new system calls, you have to specify in
+          <code class="inline"
+            ><a href="https://man7.org/linux/man-pages/man0/unistd.h.0p.html"
+              >unistd.h</a
+            ></code
+          >
+          how many entries you need to have in your system call table. I lost
+          more time than I'd like to admit toiling over this one line:
+          <code class="inline">#define __NR_syscalls (401)</code> not realizing
+          that the table had to be aligned in increments of four... <br /><br />
+          Defining the system call itself was also very different, you have to
+          use the
+          <code class="inline"
+            ><a
+              href="https://docs.huihoo.com/doxygen/linux/kernel/3.7/include_2linux_2syscalls_8h.html"
+              >SYSCALL_DEFINE*</a
+            ></code
+          >
+          macro, with the asterisk replaced with however many parameters you
+          need. At one point, I needed to pass seven parameters in order to
+          support chain metadata, only to discover that
+          <code class="inline">SYSCALL_DEFINE6</code> was the hard limit. The
+          solution was to pack all the information as my own
+          <code class="inline">chain_struct</code> and pass it as a
+          <code class="inline">void *</code>. In the user space things like this
+          would proabably just feel like an inconvenience, but in the kernel, it
+          felt purposeful and made me design with more intention and with
+          efficiency in mind. <br /><br />
+          During development, I leaned on kernel modules to make testing a
+          little easier. I created the system calls with hooks that could be
+          modified with loadable modules. Being able to test functionality
+          without needing to rebuild the entire kernel saved me time and some
+          sanity, but the process was still slow compared to user-space work. I
+          really got a feel for how expensive minor mistakes become at this
+          level.
+        </div>
 
-      <div class="subtitle">Context Switches and Time Accounting</div>
-      <div class="text">
-        Where I hooked exectution tracking into the scheduler, how context switches work in context, how this changed my mental model of a running task Why time is measured at schedule in and schedule out (tasks is only running between in and out)
-        there is no continuous timer per task, time accounting is inferred, nto observed
-      </div>
+        <div class="subtitle">Context Switches and Time Accounting</div>
+        <div class="text">
+          Most of the work for this part of the project resides in
+          <code class="inline"
+            ><a
+              href="https://docs.huihoo.com/doxygen/linux/kernel/3.7/kernel_2sched_2core_8c.html"
+              >kernel/sched/core.c</a
+            ></code
+          >
+          yet another intimidating file, this is where the Linux scheduler's
+          core logic is written. This file decides when a task stops running,
+          when another one begins, and everything in between. <br /><br />
+          At the center of this, is the
+          <code class="inline">__schedule()</code>. This function is evoked
+          every time we need a context switch, whether it was because the
+          current task was preempted, blocked, or voluntarily gave up execution.
+          Inside <code class="inline">__schedule()</code>, the scheduler picks
+          the next task to run, does some bookkeeping, and triggers the context
+          switch.
 
-      <div class="subtitle">Scheduler Hot Paths</div>
-      <div class="text">
-        explain what hot paths are, how they run constnatly, how small mistakes propagate everywhere, and how debugging here is brutal. Transition for next
-      </div>
+          <br /><br />This made for the ideal place for time tracking. When a
+          new task is scheduled in, the kernel has a precise moment where CPU
+          ownership changes. By recording timestamps at the point when a new
+          task is scheduled and when said task completes, execution time can be
+          found as the difference between these two events.
 
-      <div class="subtitle">The Bug That Bricked My Raspberry Pi</div>
-      <div class="text">
-        (WIP) Missing null check in kernel/sched/core.c, how it affected every task not just mine. Symptoms failed to boot, no clear error, system unusuable. 
-        Talk about emotional arc: confusion panic talk about how i thought it was a serial connection or a hardware issue and that i had to find a monitor and kbm to verify 
-        it wasnt that and how after a while of frustration i realized it and fixed it. Mention the very this must be my fault moment
-        Taught me that kernel has no safety net, one uncheked pointer can kill the entire system, 
-      </div>
+          <br /><br />
+          One minor detail made this a little more complicated than it seems: a
+          task doesn't necessarily run in one continuous stretch. A task could
+          be preempted, rescheduled, blocked by I/O, etc. Each of these events
+          gives a separate "slice" of the execution time. Because of this,
+          execution time can't be measured with one start and end timestamp.
+          Instead, we have to make use of a per-task time accumulator, where
+          every time a task is scheduled out, the elapsed time since it was last
+          scheduled in is added. The accumulator is then reset at the beginning
+          of the next period.
 
-      <div class="text">
-        After hours of debugging, reflashing, and second-guessing the hardware, the process started feeling less like engineering and more like faith. Recompile. Reboot. Wait. Stare. Hope. 
-        Emotionally, the night felt like I was in Las Vegas hoping that one more pull of the slot machine would finally pay out. Same ritual, different casino.
-        (embed video here) caption: Recompiling th ekernel feels statistically indistinguishable from gambling.
-      </div>
+          <br /><br />Implementing the accumulator forced me to be precise about
+          where each piece of information lived and when it was updated. This
+          was one of the kernel's hottest paths, and as such the tiniest changes
+          could propogate through the entire system.
+          <img src="/images/white-rabbit.webp" />
+          <div class="caption">Subtle foreshadowing</div>
+        </div>
 
-      <div class="subtitle">Debugging in the Kernel Is a Different Beast</div>
-      <div class="text">
-        (WIP) Slow compile times, long reboot cycles, limited feedback, importance of setting things up correctly the first time. Punishes carelessness and rewards understanding the full system and planning for it
-      </div>
-      <div class="text">
-        Early on, every kernel change meant manually copying the configuration, mounting the target fielsystem, backing up the kernel image, cross-compiling, loading modules, and unmounting
-        everything again. It worked, but each iteration added friction, and debugging became as much about patience as correctness. 
-      </div>
-      <div class="text">
-        Eventually, I realized the real problem wasn't in the kernel code itself, but the cost of each iteration. I scripted the entire process into a single command, turning minutes of careful repetition into one line.
-        That small change dramatically reduced the overhead of experimentation and made it easier to focus on the code instead of the process.
-      </div>
+        <div class="subtitle">The Bug That Bricked My Raspberry Pi</div>
+        <div class="text">
+          This leads me to the last night that I had to finish the project.
+          Right when I started to think I had a grasp on this whole kernel
+          development business. I was implementing the logic for measuring
+          end-to-end latency for chained tasks and it was finally time to test
+          my code. I ran the cross compiler, had to go back to fix some minor
+          mistakes, and booted up the Pi.
 
-      <div class="subtitle">How This Changed the Way I Write Code</div>
-      <div class="text">
-        Being more delibarte about structure. thinking about cleanup paths early (what happens when something dails halfway, what happens when a task exits, what happens when a rsv is cancelled, what happens 
-        whtn the kernel shuts dwon. "if this fails halfway what state am i leaving behind/" talk abt canceling timers, freeing memory, resetting task_struct fields), writing
-        code assuming future me will debug it like including VERBOSE variable printouts for dmesg right after adding a new thing rather than waiting for it to go wrong and 
-        going back to print out whatever it is i THINK might be messed up. how these translate into user-space programming
-      </div>
+          <br /><br />
+          Although this time, I wasn't getting any response from my serial
+          connection. I thought maybe the kernel got corrupted, so I clean built
+          it again but got the same result. I was beginning to panic. This had
+          never happened before. I had compiled this kernel hundreds of times at
+          this point and I had never seen this before. Usually if I have some
+          kind of error in my code the compiler would break and I could go back
+          to fix it, but this time I wasn't getting any errors or warnings.
 
-      <div class="subtitle">Conclusion</div>
-      <div class="text">
-        What the project gave me, what i now notice when reading kernel code, sparking my interest in kernel development and doing more mid level work liket his. end on curiosity
+          <br /><br />
+          My next thought was that maybe the hardware had given up on me. I
+          tried multiple different ports and cables, I even borrowed another
+          group's RPI kit and tried to run my kernel on all of their hardware
+          and nothing changed. Maybe the problem was somehow with the serial
+          connection to my laptop? I tore the lab apart trying to find an hdmi
+          cable, keyboard, and mouse so I could run the Pi independently and
+          when I booted up, I was greeted with this wonderful screen:
+          <img src="/images/pi-death.png" />
+          <div class="caption">
+            I would later learn this is the splash screen from the GPU when the
+            kernel can't boot.
+          </div>
+          <br />what.
+        </div>
+        <div class="text">
+          After hours of debugging, reflashing, and second-guessing the
+          hardware, the process started feeling less like engineering and more
+          like faith. Recompile. Reboot. Wait. Stare. Hope. Emotionally, the
+          night felt like I was in Las Vegas hoping that one more pull of the
+          slot machine would finally pay out. Same ritual, different casino.
+          <img src="/images/gambling.gif" />
+          <div class="caption">
+            Recompiling the kernel at 4am feels statistically indistinguishable
+            from gambling
+          </div>
+
+          <br /><br />
+          Eventually, I found my error and I felt like the biggest idiot in the
+          world. See, in my <code class="inline">__schedule()</code> (what'd I
+          call it? One of the hottest paths in the linux kernel?), I had
+          implemented logic for tracking chain information in a shared
+          <code class="inline">chain_struct</code> that I added a pointer for in
+          the <code class="inline">task_struct</code>. But somehow, I failed to
+          think about the fact that this code was running for
+          <div class="it">every</div>
+          instance of
+          <div class="it">every</div>
+          process
+          <div class="it">EVERY</div>
+          time it ran, and I was
+          <div class="it">NOT</div>
+          implementing chain information for every process on the machine.
+          Without checking for the
+          <code class="inline">chain_struct</code> first, I was dereferencing a
+          null pointer like a bajillion times a second. So bad was this mistake
+          that the kernel couldn't even boot to a point where I could see any
+          errors. *sigh* You live and you learn.
+        </div>
+
+        <div class="subtitle">Debugging in the Kernel Is a Different Beast</div>
+        <div class="text">
+          And that is no exaggeration. Slow compile times, long reboot cycles,
+          limited feedback; so many factors play into needing to get things
+          right the first time. There is no carelessness that will go unpunished
+          in the kernel, and the benefit of understanding the system and
+          planning ahead is priceless. A whole host of unique challenges are
+          introduced as well.
+          <br /><br />
+          Early on, every kernel change meant manually copying the
+          configuration, mounting the target filesystem, backing up the kernel
+          image, cross-compiling, loading modules, and unmounting everything
+          again. It worked, but each iteration added friction, and debugging
+          became as much about patience as correctness.
+          <br /><br />
+          Eventually, I realized the real problem wasn't in the kernel code
+          itself, but the minor inefficiencies at every turn. I scripted the
+          entire process into a single command, turning minutes of repetitive
+          monotony into one line. That small change dramatically reduced the
+          overhead of each iteration and made it easier to focus on the content
+          of the code instead of wasting time on the just running the code.
+        </div>
+
+        <div class="subtitle">How This Changed the Way I Write Code</div>
+        <div class="text">
+          Being more delibarte about structure. thinking about cleanup paths
+          early (what happens when something dails halfway, what happens when a
+          task exits, what happens when a rsv is cancelled, what happens whtn
+          the kernel shuts dwon. "if this fails halfway what state am i leaving
+          behind/" talk abt canceling timers, freeing memory, resetting
+          task_struct fields), writing code assuming future me will debug it
+          like including VERBOSE variable printouts for dmesg right after adding
+          a new thing rather than waiting for it to go wrong and going back to
+          print out whatever it is i THINK might be messed up. how these
+          translate into user-space programming
+          <br />I learned a (pardon my french) sh*t ton in this project, I would
+          say this project might be top 3 as far as impact to my development as
+          a programmer. I had to learn how to be more deliberate with my
+          structure; Think about cleanup paths early, asking questions like "if
+          this fails halfway what state am I leaving behind?"; Make sure I'm
+          maintaining everything properly: canceling timers, freeing memory,
+          resetting fields, etc; Writing code that future me will be able to
+          debug, like making sure to include verbose and detailed printouts as I
+          go, rather than going back and adding print statements everywhere
+          after it breaks (I found myself recompiling the kernel multiple times
+          just because I needed to make my printouts more readable for myself).
+          All of these tough lessons are just as applicable in the user-space
+          and forming good habits like these is how I can push myself to be the
+          best, no matter the field.
+        </div>
+
+        <img src="/images/real-time-systems-git.png" />
+        <div class="caption">7,166 lines of code later...</div>
       </div>
     </div>
-  </div>
-</body>
+  </body>
+</html>
+

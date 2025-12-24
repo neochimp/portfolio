@@ -1,115 +1,128 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
-<head>
-  <meta charset="utf-8">
-  <title>Cameron Lee Portfolio</title>
-  <meta name="author" content="Cameron Lee">
-  <meta name="description" content="Cameron Lee's personal site. This place is used to host my portfolio, personal blog, projects, contact, anything that I might want to put out to the world.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cascadia Code">
-  <link href="css/style.css" rel="stylesheet">
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <title>Cameron Lee Portfolio</title>
+    <meta name="author" content="Cameron Lee" />
+    <meta
+      name="description"
+      content="Cameron Lee's personal site. This place is used to host my portfolio, personal blog, projects, contact, anything that I might want to put out to the world."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Oswald"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Cascadia Code"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
   <script src="js/script.js"></script>
 
-<header>
-  <div id="top-line"></div>
-  <div id="nav-container">
-    <div id="logo">CAMERON LEE</div>
-    <!-- Hidden dropdown menu shown on small screens -->
-    <div id="mobileMenu">
-      <ul>
-        <li><a href="/index.html" style="color:white;">HOME</a></li>
+  <header>
+    <div id="top-line"></div>
+    <div id="nav-container">
+      <div id="logo">CAMERON LEE</div>
+      <!-- Hidden dropdown menu shown on small screens -->
+      <div id="mobileMenu">
+        <ul>
+          <li><a href="/index.html" style="color: white">HOME</a></li>
+          <li><a href="/projects.html">PROJECTS</a></li>
+          <li><a href="/blog.html">BLOG</a></li>
+          <li><a href="/about.html">ABOUT</a></li>
+          <li><a href="/contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+      <ul id="navbar">
+        <div id="menuBtn" class="animatedico" onclick="menuIconAnim(this)">
+          <div class="ln1"></div>
+          <div class="ln2"></div>
+          <div class="ln3"></div>
+        </div>
+        <li><a href="/index.html" style="color: white">HOME</a></li>
+        <li>/</li>
         <li><a href="/projects.html">PROJECTS</a></li>
+        <li>/</li>
         <li><a href="/blog.html">BLOG</a></li>
+        <li>/</li>
         <li><a href="/about.html">ABOUT</a></li>
+        <li>/</li>
         <li><a href="/contact.html">CONTACT</a></li>
       </ul>
     </div>
-    <ul id="navbar">
-        <div id="menuBtn" class="animatedico" onclick="menuIconAnim(this)">
-            <div class="ln1"></div>
-            <div class="ln2"></div>
-            <div class="ln3"></div>
+  </header>
+
+  <body>
+    <div class="main home">
+      <!-- Hero Section -->
+      <div class="textbox">
+        <div class="title">Welcome!</div>
+        <div class="text">
+          Please note that this website is still a work in progress, some
+          placeholder content can still be found here and there. <br /><br />
         </div>
-        <li><a href="/index.html" style="color:white;">HOME</a></li>
-        <li>/</li>
-        <li><a href="/projects.html">PROJECTS</a></li>
-        <li>/</li>
-        <li><a href="/blog.html">BLOG</a></li>
-        <li>/</li>
-        <li><a href="/about.html">ABOUT</a></li>
-        <li>/</li>
-        <li><a href="/contact.html">CONTACT</a></li>
-    </ul>
-    
-  </div>
-</header>
-
-
-<body>
-  <div class="main home">
-    <!-- Hero Section -->
-    <div class="textbox">
-      <div class="title">
-        Welcome!
+        <div class="text">
+          Heyo! Welcome to my personal site. Here you can find a few different
+          things:
+          <br /><br />
+          On the right side is a few of my recent blog posts. I tend to discuss
+          current technology things on my mind; but, there's nothing specific
+          that goes on over there, just my brain dumps.
+          <br /><br />
+          If you scroll down you can see a quick summary of a few different
+          projects, you can click to read more if you're curious.
+          <br /><br />
+          The main page here doesn't list everything on the site, you can use
+          the nav bar at the top of the page to see the full listings of either
+          my projects or my blog. I am still in the process of writing up my
+          projects and fleshing out my blogs.
+        </div>
       </div>
-      <div class="text">
-        Please note that this website is still a work in progress, some placeholder content can still be found here and there. <br><br>
+
+      <!-- Recent Blogs -->
+      <div class="recents">
+        <div class="title">Recent Blog Posts</div>
+
+        <div class="recent-blog">
+          <a href="blog/real-time-linux-scheduler.html" style="font-size: 1.5em"
+            >Real-Time Task Reservations</a
+          >
+          <div>Baby's first steps into kernel development | 12/21/25</div>
+        </div>
+
+        <div class="recent-blog">
+          <a href="blog/ai-homework.html" style="font-size: 1.5em"
+            >Catching AI Use in CS Homework</a
+          >
+          <div>The next generation of programmers is so cooked | 11/20/25</div>
+        </div>
+
+        <div class="recent-blog" id="last-blog">
+          <a href="blog/my-first-blog.html" style="font-size: 1.5em"
+            >My first blog</a
+          >
+          <div>printf("Hello, World!\n") | 5/24/25</div>
+        </div>
       </div>
-      <div class="text">
-        Heyo! Welcome to my personal site. Here you can find a few different things: 
-        <br><br>
-        On the right side is a few of my recent blog posts. I tend to discuss current technology things on my mind; but, there's nothing specific 
-        that goes on over there, just my brain dumps. 
-        <br><br>
-        If you scroll down you can see a quick summary of a few different projects, you can click to read more if you're curious.
-        <br><br>
-        The main page here doesn't list everything on the site, you can use the nav bar at the top of the page to see the full listings of either my projects or my blog.
-        I am still in the process of writing up my projects and fleshing out my blogs.
+
+      <!-- Projects summaries -->
+      <div class="textbox">
+        <div class="title" style="font-size: 1.5em">
+          Real-Time Task Reservations and Scheduling in Linux
+        </div>
+        <div class="text">
+          One of the most challenging and interesting classes I've taken at SDSU
+          is Dr. Hyunjong Choi's Theory Of Real-Time Systems course. As part of
+          this class, I modified the Linux kernel to support explicit real-time
+          task reservations, periodic execution, and end-to-end latency
+          monitoring...
+        </div>
+        <div class="project-link">
+          <a href="blog/real-time-linux-scheduler.html">read more→</a>
+        </div>
       </div>
     </div>
-
-    <!-- Recent Blogs -->
-    <div class="recents">
-      <div class="title">
-        Recent Blog Posts 
-      </div>
-      
-      <div class="recent-blog">
-        <a href="index.html" style="font-size:1.5em;">Real-Time Task Reservations</a>
-        <div>Baby's first steps into kernel development | 12/21/25</div>
-      </div>
-
-      <div class="recent-blog">
-        <a href="blog/ai-homework.html"style="font-size:1.5em;">Catching AI Use in CS Homework</a>
-        <div>The next generation of programmers is so cooked | 11/20/25</div>
-      </div>
-
-      <div class="recent-blog" id="last-blog">
-        <a href="blog/my-first-blog.html"style="font-size:1.5em;">My first blog</a>
-        <div>printf("Hello, World!\n") | 5/24/25</div>
-      </div>
-    </div>
-
-    <!-- Projects summaries -->
-    <div class="textbox">
-      <div class="title" style="font-size:1.5em;">
-        Real-Time Task Reservations and Scheduling in Linux
-      </div>
-      <div class="text">
-        One of the most challenging and interesting classes I've taken at SDSU is Dr. Hyunjong Choi's Theory Of Real-Time Systems course.
-        As part of this class, I modified the Linux kernel to support explicit real-time task reservations, periodic execution, and end-to-end latency 
-        monitoring...   
-      </div>
-      <div class="project-link">
-        <a href="blog/real-time-linux-scheduler.html">read more→</a>
-      </div>
-    </div>
-
-
-  </div>
-</body>
-
+  </body>
 </html>
