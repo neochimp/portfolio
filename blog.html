@@ -1,98 +1,117 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
-<head>
-  <meta charset="utf-8">
-  <title>Cameron Lee Portfolio</title>
-  <meta name="author" content="Cameron Lee">
-  <meta name="description" content="Cameron Lee's personal site. This place is used to host my portfolio, personal blog, projects, contact, anything that I might want to put out to the world.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cascadia Code">
-  <link href="/css/style.css" rel="stylesheet">
-  <link href="/css/blog-search.css" rel="stylesheet">
-</head>
+  <head>
+    <meta charset="utf-8" />
+    <title>Cameron Lee Portfolio</title>
+    <meta name="author" content="Cameron Lee" />
+    <meta
+      name="description"
+      content="Cameron Lee's personal site. This place is used to host my portfolio, personal blog, projects, contact, anything that I might want to put out to the world."
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Oswald"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Cascadia Code"
+    />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/blog-search.css" rel="stylesheet" />
+  </head>
   <script src="/js/script.js"></script>
   <script src="/js/table.js"></script>
 
-<header>
-  <div id="top-line"></div>
-  <div id="nav-container">
-    <div id="logo">CAMERON LEE</div>
-    <!-- Hidden dropdown menu shown on small screens -->
-    <div id="mobileMenu">
-      <ul>
-        <li><a href="/index.html">HOME</a></li>
-        <li><a href="/projects.html">PROJECTS</a></li>
-        <li><a href="/blog.html" style="color:white;">BLOG</a></li>
-        <li><a href="/about.html">ABOUT</a></li>
-        <li><a href="/contact.html">CONTACT</a></li>
-      </ul>
-    </div>
-    <ul id="navbar">
+  <header>
+    <div id="top-line"></div>
+    <div id="nav-container">
+      <div id="logo">CAMERON LEE</div>
+      <!-- Hidden dropdown menu shown on small screens -->
+      <div id="mobileMenu">
+        <ul>
+          <li><a href="/index.html">HOME</a></li>
+          <li><a href="/projects.html">PROJECTS</a></li>
+          <li><a href="/blog.html" style="color: white">BLOG</a></li>
+          <li><a href="/about.html">ABOUT</a></li>
+          <li><a href="/contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+      <ul id="navbar">
         <div id="menuBtn" class="animatedico" onclick="menuIconAnim(this)">
-            <div class="ln1"></div>
-            <div class="ln2"></div>
-            <div class="ln3"></div>
+          <div class="ln1"></div>
+          <div class="ln2"></div>
+          <div class="ln3"></div>
         </div>
         <li><a href="/index.html">HOME</a></li>
         <li>/</li>
         <li><a href="/projects.html">PROJECTS</a></li>
         <li>/</li>
-        <li><a href="/blog.html" style="color:white;">BLOG</a></li>
+        <li><a href="/blog.html" style="color: white">BLOG</a></li>
         <li>/</li>
         <li><a href="/about.html">ABOUT</a></li>
         <li>/</li>
         <li><a href="/contact.html">CONTACT</a></li>
-    </ul>
-    
-  </div>
-</header>
-
-<body>
-    <div class="blogs">
-        <div class = "input-box">
-            <input type="text" id="input" onkeyup="tableSearch()" placeholder="Search for blogs...">
-            <button id="clearButton" onclick="clearSearch()" style="display:none;">✕</button>
-        </div>        
-        <ul id="myUL">
-
-             <li>
-                <a href="blog/real-time-linux-scheduler.html">
-                    <div>Real-Time Task Reservations and Scheduling in Linux</div>
-                    <div class="desc">Baby's first steps into kernel development</div>
-                </a> 
-                <div id="tags">
-                    <button onclick="selectTag('#Linux')">#Linux</button>
-                    <button onclick="selectTag('#Kernel')">#Kernel</button>
-                    <button onclick="selectTag('#Real-Time Systems')">#Real-Time Systems</button>
-                    <button onclick="selectTag('#Projects')">#Projects</button>
-                </div>
-            </li>
-
-            <li>
-                <a href="blog/ai-homework.html">
-                    <div>Catching AI Use In CS Homework</div>
-                    <div class="desc">The next generation of programmers is so cooked</div>
-                </a> 
-                <div id="tags">
-                    <button onclick="selectTag('#AI')">#AI</button>
-                    <button onclick="selectTag('#Education')">#Education</button>
-                    <button onclick="selectTag('#Blogs')">#Blogs</button>
-                </div>
-            </li>
-
-            <li>
-                <a href="blog/my-first-blog.html">
-                    <div>My First Blogpost!</div>
-                    <div class="desc">printf("Hello, World!\n");</div>
-                </a> 
-                <div id="tags">
-                    <button onclick="selectTag('#WebDev')">#WebDev</button>
-                    <button onclick="selectTag('#Blogs')">#Blogs</button>
-                </div>
-            </li>
-
-        </ul> 
+      </ul>
     </div>
-</body>
+  </header>
+
+  <body>
+    <div class="blogs">
+      <div class="input-box">
+        <input
+          type="text"
+          id="input"
+          onkeyup="tableSearch()"
+          placeholder="Search for blogs..."
+        />
+        <button id="clearButton" onclick="clearSearch()" style="display: none">
+          ✕
+        </button>
+      </div>
+      <ul id="myUL">
+        <li>
+          <a href="blog/real-time-linux-scheduler.html">
+            <div>Real-Time Task Reservations and Scheduling in Linux</div>
+            <div class="desc">Baby's first steps into kernel development</div>
+          </a>
+          <div id="tags">
+            <button onclick="selectTag('#Linux')">#Linux</button>
+            <button onclick="selectTag('#Kernel')">#Kernel</button>
+            <button onclick="selectTag('#Real-Time Systems')">
+              #Real-Time Systems
+            </button>
+            <button onclick="selectTag('#Projects')">#Projects</button>
+            <button onclick="selectTag('#C')">#C</button>
+          </div>
+        </li>
+
+        <li>
+          <a href="blog/ai-homework.html">
+            <div>Catching AI Use In CS Homework</div>
+            <div class="desc">
+              The next generation of programmers is so cooked
+            </div>
+          </a>
+          <div id="tags">
+            <button onclick="selectTag('#AI')">#AI</button>
+            <button onclick="selectTag('#Education')">#Education</button>
+            <button onclick="selectTag('#Blogs')">#Blogs</button>
+            <button onclick="selectTag('#Java')">#Java</button>
+          </div>
+        </li>
+
+        <li>
+          <a href="blog/my-first-blog.html">
+            <div>My First Blogpost!</div>
+            <div class="desc">printf("Hello, World!\n");</div>
+          </a>
+          <div id="tags">
+            <button onclick="selectTag('#WebDev')">#WebDev</button>
+            <button onclick="selectTag('#Blogs')">#Blogs</button>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

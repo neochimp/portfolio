@@ -69,18 +69,19 @@
         <br />
         <div class="text it cent">
           One of the most challenging and interesting classes I've taken at SDSU
-          is Dr. Hyunjong Choi's Theory Of Real-Time Systems course. As part of
-          this class, I modified the Linux kernel to support explicit real-time
-          task reservations, periodic execution, and end-to-end latency
-          monitoring. While Linux supports several real-time scheduling
-          mechanisms, implementing textbook real-time scheduling models required
-          working directly with core kernel structures like the
-          <code class="inline">task_struct</code>, scheduler, and kernel timers.
-          Using custom kernel system calls, I implemented Rate Monotonic
-          scheduling and partitioned Earliest Deadline First scheduling across
-          multiple CPU cores. This post focuses less on scheduling theory and
-          more on what building these features revealed about how the Linux
-          kernel represents tasks and enforces behavior across context switches.
+          is <a href="https://noaa99.github.io/">Dr. Hyunjong Choi's</a> Theory
+          Of Real-Time Systems course. As part of this class, I modified the
+          Linux kernel to support explicit real-time task reservations, periodic
+          execution, and end-to-end latency monitoring. While Linux supports
+          several real-time scheduling mechanisms, implementing textbook
+          real-time scheduling models required working directly with core kernel
+          structures like the <code class="inline">task_struct</code>,
+          scheduler, and kernel timers. Using custom kernel system calls, I
+          implemented Rate Monotonic scheduling and partitioned Earliest
+          Deadline First scheduling across multiple CPU cores. This post focuses
+          less on scheduling theory and more on what building these features
+          revealed about how the Linux kernel represents tasks and enforces
+          behavior across context switches.
         </div>
 
         <div class="subtitle">Background</div>
