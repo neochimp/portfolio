@@ -1,10 +1,10 @@
-:root{
+:root {
   --mainColor: #00ab80;
   --bgColor: #242424;
 }
 
 /*stuff for the dropdown text*/
- /* Style the button that is used to open and close the collapsible content */
+/* Style the button that is used to open and close the collapsible content */
 
 .projects-box {
   padding: 1em;
@@ -16,7 +16,7 @@
   display: block;
   margin-left: auto;
   margin-right: auto;
-  width: min(90%, 80rem)
+  width: min(90%, 80rem);
 }
 
 .project {
@@ -48,10 +48,10 @@
   background-color: rgb(41, 48, 47);
 }
 
-.collapsible .thumb{
+.collapsible .thumb {
   width: 3em !important;
   height: 3em !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
   border-radius: 0.5em;
   flex: 0 0 3em;
   margin: 0;
