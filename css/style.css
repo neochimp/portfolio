@@ -231,6 +231,18 @@ img {
   font-size: 0.8em;
 }
 
+.tag {
+  font-style:italic; 
+  /*background-image: linear-gradient(90deg,rgba(148, 148, 148, 1) 40%, rgba(36, 36, 36, 1) 100%);*/
+  background-image: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(148, 148, 148, 1) 35%, rgba(36, 36, 36, 1) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color:transparent;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  font-size: 1em;
+  padding-top: 1em;
+}
 .contact-box {
   display: flex;
   align-items: center;
