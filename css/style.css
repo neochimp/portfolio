@@ -421,6 +421,39 @@ code.inline:has(a):hover {
   letter-spacing: 0.02em;
 }
 
+.link-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.link-buttons a {
+  display: block;
+  line-height: 0;
+  width: 88px;
+  height: 31px;
+  flex: 0 0 auto;
+}
+
+.link-buttons a img {
+  display: block;
+  width: 88px;
+  height: 31px;
+  margin: 0 !important;
+  padding: 0 !important;
+  max-width: none !important;
+  max-height: none !important;
+  object-fit: fill;
+  image-rendering: pixelated;
+}
+
+.link-buttons a:hover img {
+  transform: translateY(-1px);
+  filter: brightness(1.12) contrast(1.05);
+}
+
 /* ========== Override styles for small screens ========== */
 
 @media screen and (max-width: 75em) {
@@ -541,4 +574,5 @@ code.inline:has(a):hover {
   #mobileMenu.open {
     transform: translateX(0);
   }
+
 }

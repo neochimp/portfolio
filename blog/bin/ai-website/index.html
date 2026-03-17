@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Justin — Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">C.</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <p class="hero-greeting fade-up">Hi, my name is</p>
+      <h1 class="hero-name fade-up" style="animation-delay:.1s">Cameron.</h1>
+      <h2 class="hero-tagline fade-up" style="animation-delay:.2s">I build things for the web.</h2>
+      <p class="hero-description fade-up" style="animation-delay:.3s">
+        I'm a developer passionate about crafting beautiful, performant digital experiences.
+        Currently focused on building accessible, human-centered products.
+      </p>
+      <a href="#projects" class="btn btn-primary fade-up" style="animation-delay:.4s">View my work</a>
+    </div>
+    <div class="hero-scroll-indicator fade-up" style="animation-delay:.6s">
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <section class="section about" id="about">
+    <div class="container">
+      <h2 class="section-heading">About Me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Hello! I'm Cameron, a developer who enjoys turning complex problems into simple,
+            elegant solutions. I'm interested in the full spectrum of web development &mdash;
+            from pixel-perfect front-ends to robust back-end systems.
+          </p>
+          <p>
+            When I'm not at the keyboard, you can find me exploring new technologies,
+            contributing to open source, or learning something completely new.
+          </p>
+        </div>
+        <div class="about-image">
+          <div class="about-image-wrapper">
+            <div class="about-image-placeholder">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                <circle cx="12" cy="7" r="4"/>
+              </svg>
+              <span>Your photo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section projects" id="projects">
+    <div class="container">
+      <h2 class="section-heading">Featured Projects</h2>
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <div class="project-image">
+            <div class="project-image-placeholder">01</div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Project One</h3>
+            <p class="project-description">
+              A web application that solves a real-world problem with a clean UI and robust architecture.
+            </p>
+            <ul class="project-tech">
+              <li>React</li>
+              <li>Node.js</li>
+              <li>PostgreSQL</li>
+            </ul>
+            <div class="project-links">
+              <a href="#" class="project-link" aria-label="View source code">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </a>
+              <a href="#" class="project-link" aria-label="View live demo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-image">
+            <div class="project-image-placeholder">02</div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Project Two</h3>
+            <p class="project-description">
+              An interactive dashboard with real-time data visualization and intuitive controls.
+            </p>
+            <ul class="project-tech">
+              <li>TypeScript</li>
+              <li>D3.js</li>
+              <li>Express</li>
+            </ul>
+            <div class="project-links">
+              <a href="#" class="project-link" aria-label="View source code">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </a>
+              <a href="#" class="project-link" aria-label="View live demo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-image">
+            <div class="project-image-placeholder">03</div>
+          </div>
+          <div class="project-info">
+            <h3 class="project-title">Project Three</h3>
+            <p class="project-description">
+              A performant CLI tool that automates repetitive developer workflows and saves time.
+            </p>
+            <ul class="project-tech">
+              <li>Python</li>
+              <li>Click</li>
+              <li>SQLite</li>
+            </ul>
+            <div class="project-links">
+              <a href="#" class="project-link" aria-label="View source code">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+              </a>
+              <a href="#" class="project-link" aria-label="View live demo">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              </a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section skills" id="skills">
+    <div class="container">
+      <h2 class="section-heading">Skills & Proficiency</h2>
+      <div class="proficiency-grid">
+
+        <div class="proficiency-item">
+          <div class="proficiency-header">
+            <span class="proficiency-name">Python</span>
+            <span class="proficiency-badge expert">Expert</span>
+          </div>
+          <div class="proficiency-track"><div class="proficiency-fill expert" style="--fill:92%"></div></div>
+        </div>
+
+        <div class="proficiency-item">
+          <div class="proficiency-header">
+            <span class="proficiency-name">JavaScript</span>
+            <span class="proficiency-badge advanced">Advanced</span>
+          </div>
+          <div class="proficiency-track"><div class="proficiency-fill advanced" style="--fill:85%"></div></div>
+        </div>
+
+        <div class="proficiency-item">
+          <div class="proficiency-header">
+            <span class="proficiency-name">TypeScript</span>
+            <span class="proficiency-badge advanced">Advanced</span>
+          </div>
+          <div class="proficiency-track"><div class="proficiency-fill advanced" style="--fill:80%"></div></div>
+        </div>
+
+        <div class="proficiency-item">
+          <div class="proficiency-header">
+            <span class="proficiency-name">React</span>
+            <span class="proficiency-badge advanced">Advanced</span>
+          </div>
+          <div class="proficiency-track"><div class="proficiency-fill advanced" style="--fill:82%"></div></div>
+        </div>
+
+        <div class="proficiency-item">
+          <div class="proficiency-header">
+            <span class="proficiency-name">Node.js</span>
+            <span class="proficiency-badge intermediate">Intermediate</span>
+          </div>
+          <div class="proficiency-track"><div class="proficiency-fill intermediate" style="--fill:68%"></div></div>
+        </div>
+
+        <div class="proficiency-item">
+          <div class="proficiency-header">
+            <span class="proficiency-name">HTML & CSS</span>
+            <span class="proficiency-badge expert">Expert</span>
+          </div>
+          <div class="proficiency-track"><div class="proficiency-fill expert" style="--fill:95%"></div></div>
+        </div>
+
+        <div class="proficiency-item">
+          <div class="proficiency-header">
+            <span class="proficiency-name">SQL</span>
+            <span class="proficiency-badge intermediate">Intermediate</span>
+          </div>
+          <div class="proficiency-track"><div class="proficiency-fill intermediate" style="--fill:65%"></div></div>
+        </div>
+
+        <div class="proficiency-item">
+          <div class="proficiency-header">
+            <span class="proficiency-name">Docker</span>
+            <span class="proficiency-badge intermediate">Intermediate</span>
+          </div>
+          <div class="proficiency-track"><div class="proficiency-fill intermediate" style="--fill:60%"></div></div>
+        </div>
+
+        <div class="proficiency-item">
+          <div class="proficiency-header">
+            <span class="proficiency-name">Django</span>
+            <span class="proficiency-badge intermediate">Intermediate</span>
+          </div>
+          <div class="proficiency-track"><div class="proficiency-fill intermediate" style="--fill:62%"></div></div>
+        </div>
+
+        <div class="proficiency-item">
+          <div class="proficiency-header">
+            <span class="proficiency-name">Git</span>
+            <span class="proficiency-badge advanced">Advanced</span>
+          </div>
+          <div class="proficiency-track"><div class="proficiency-fill advanced" style="--fill:78%"></div></div>
+        </div>
+
+        <div class="proficiency-item">
+          <div class="proficiency-header">
+            <span class="proficiency-name">AWS</span>
+            <span class="proficiency-badge beginner">Beginner</span>
+          </div>
+          <div class="proficiency-track"><div class="proficiency-fill beginner" style="--fill:35%"></div></div>
+        </div>
+
+        <div class="proficiency-item">
+          <div class="proficiency-header">
+            <span class="proficiency-name">Rust</span>
+            <span class="proficiency-badge beginner">Beginner</span>
+          </div>
+          <div class="proficiency-track"><div class="proficiency-fill beginner" style="--fill:25%"></div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact" id="contact">
+    <div class="container contact-container">
+      <h2 class="section-heading">Get In Touch</h2>
+      <p class="contact-text">
+        I'm currently open to new opportunities and would love to hear from you.
+        Whether you have a question, a project idea, or just want to say hello &mdash; my inbox is always open.
+      </p>
+      <a href="mailto:hello@example.com" class="btn btn-primary">Say Hello</a>
+      <div class="contact-socials">
+        <a href="#" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </a>
+        <a href="#" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="#" aria-label="Twitter">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>Designed & Built by Cameron</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
