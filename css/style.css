@@ -3,6 +3,10 @@
   --bgColor: #242424;
 }
 
+@font-face {
+  font-family: kiwiSoda;
+  src: url(files/KiwiSoda.woff);
+}
 html {
   font-size: clamp(8px, 1vw + 5px, 12px);
 }
