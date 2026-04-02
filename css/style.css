@@ -4,11 +4,11 @@
 }
 
 @font-face {
-  font-family: kiwiSoda;
-  src: url(files/KiwiSoda.woff);
+  font-family: "aldo";
+  src: url(/files/AldotheApache.woff2) format("woff2");
 }
 html {
-  font-size: clamp(8px, 1vw + 5px, 12px);
+  font-size: clamp(8px, 1vw + 6px, 14px);
 }
 
 * {
@@ -46,12 +46,14 @@ header {
 
 /*my name lol*/
 #logo {
-  font-size: 3em;
+  font-size: 4.5em;
   padding: 0.25em;
-  padding-left: 1.0em;
+  padding-left: 0.5em;
   padding-top: 1.0em;
   color: white;
   position: static;
+  font-family: "aldo";
+  letter-spacing: 4px;
 }
 
 /* ========== Default styles: wide screens ========== */
@@ -106,7 +108,7 @@ body {
   overflow-x: hidden;
   overflow-wrap: break-word;
   color: #ffffff;
-  padding-top: 5em;
+  padding-top: 7em;
   font-family: "Cascadia Code", sans-serif;
 }
 
