@@ -479,7 +479,7 @@ code.inline:has(a):hover {
 
 /* ========== Override styles for small screens ========== */
 
-@media screen and (max-width: 75em) {
+@media screen and (max-width: 100em) {
   #navbar {
     width: 4em;
     height: 2em;
