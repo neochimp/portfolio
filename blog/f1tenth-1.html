@@ -1,0 +1,179 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Project: F1Tenth</title>
+    <link rel="icon" href="/images/favicon.ico" type="image/x-icon">
+    <meta name="author" content="Cameron Lee" />
+    <meta name="description" content="Cameron's Blogpost For F1Tenth Project" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Oswald"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Cascadia Code"
+    />
+    <link href="/css/style.css" rel="stylesheet" />
+    <script src="/js/script.js"></script>
+  </head>
+
+  <header>
+    <div id="top-line"></div>
+    <div id="nav-container">
+      <div id="logo">[CAM]</div>
+      <!-- Hidden dropdown menu shown on small screens -->
+      <div id="mobileMenu">
+        <ul>
+          <li><a href="/index.html">HOME</a></li>
+          <li><a href="/projects.html">PROJECTS</a></li>
+          <li><a href="/blog.html" style="color: white">BLOG</a></li>
+          <li><a href="/about.html">ABOUT</a></li>
+          <li><a href="/contact.html">CONTACT</a></li>
+        </ul>
+      </div>
+      <ul id="navbar">
+        <div id="menuBtn" class="animatedico" onclick="menuIconAnim(this)">
+          <div class="ln1"></div>
+          <div class="ln2"></div>
+          <div class="ln3"></div>
+        </div>
+        <li><a href="/index.html">HOME</a></li>
+        <li>/</li>
+        <li><a href="/projects.html">PROJECTS</a></li>
+        <li>/</li>
+        <li><a href="/blog.html" style="color: white">BLOG</a></li>
+        <li>/</li>
+        <li><a href="/about.html">ABOUT</a></li>
+        <li>/</li>
+        <li><a href="/contact.html">CONTACT</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <body>
+    <div class="main">
+      <div class="textbox">
+        <div class="title">F1Tenth Racecar (Senior Capstone) - Part I: Intro and Design</div>
+        <div class="description">
+          Autonomous 1/10th-scale racecar built for real-time navigation and racing
+        </div>
+        <div class="author">Cameron Lee, 4/20/2025 - 2:31am</div>
+
+        <div class="subtitle">Preface</div>
+        <br />
+        <div class="text it cent">
+          This year at SDSU,
+          <a href="https://bryandony.github.io/">Dr. Bryan Donyanavard</a>,
+          offered a Senior Capstone class for computer science students. This
+          was the first time this class had been offered and I got to be one of
+          the test monkeys piloting the program. With a strong emphasis on group
+          collaboration, solving real problems, and getting a feel for what it's 
+          like to fulfill a product and present to a non-technical audience. <br><br>This is part 1 
+          where I discuss the initial project and the build of the car.
+
+        </div>
+        <div class="subtitle">Project Selection</div>
+        <div class="text">
+          First order of business was selecting our fate for the rest of the year. We were split up into groups of 3-5, and shown some pitch videos from
+          various different professors and industry folk on projects they wanted
+          fulfilled by us. Once shown the pitches, our groups were told to draft an email to <a href="https://bryandony.github.io/">Professor Donyanavard</a> 
+          with our team members and an ordered list of projects based on preference. 
+          <br><br>
+          While all of the pitches were interesting, I had my eyes set on only one project: <a href="https://noaa99.github.io/">Dr. Hyunjong Choi</a>'s F1Tenth Racecar.
+          Professor Choi had previously participated in multiple competitions and was looking for students that were interested in research to collaborate with his
+          <a href="https://rtec.sdsu.edu/">Real-Time Embedded & Control Systems Laboratory</a>. 
+          <br><br>
+          I would say that getting this project was luck, but I also believe that nobody else in that room wanted it as badly as I did. See, Professor
+          Donyanavard stated that he would only be accepting emails once it hit 6:00pm; challenge accepted. After some brief deliberation with my team, I drafted up an 
+          email on my laptop. Suddenly, a thought came to mind: if every student in this classroom was also trying to send an email at 6 on the dot, and we were all 
+          connected to the school wifi on our laptops, everyone would have the same ping. I made a quick decision to close my laptop and log into the computer lab desktop. 
+          The plan now was to send the email from the school desktop because it was connected to the ethernet of the same network, guaranteeing a faster connection than everyone else.
+          But just to be extra sure, I also had the national atomic clock pulled up on the screen. Tapping my foot like a metronome by the second, a skill I had never appreciated outside
+          of drumming, I had my finger hovering the send button ready to click at the very millisecond the clock showed 6. And, after a tense few minutes I had successfully
+          locked our group into what I believe to be the best project offered.
+        </div>
+
+        <div class="subtitle">Assembling the Car</div>
+        <div class="text">
+          After a few weeks of preliminary research and patiently waiting for electronics from China, we received all the components necessary to 
+          assemble our car, except for the frame which would hold our sensors around the controller. Luckily for me, I've been a hobbiest 3D printer since middle school 
+          and have some experience with using Blender (being a jack of all trades comes in handy sometimes).
+        </div>
+        <div class="text">
+          The builds created by the teams before me all shared one major flaw, it was extremely cumbersome to take apart the car for maintenance and modifications. The sensors
+          were mounted with screws in tiny corners impossible to reach with a screwdriver. I also felt like the electronic components of the other designs were too exposed, and
+          that made me nervous considering the high likelihood we would crash the car repeatedly.
+          
+          <img src="/images/f1tenth-screws.jpg">
+          <div class="caption">One of professor Choi's other race cars. The depth perception camera is mounted with screws on the back blocked by where the LiDAR is secured.</div> 
+          <img src="/images/f1tenth-others.jpg">
+          <div class="caption">The cars built / being built by other teams. Here you can see the powerboard and Jetson are very exposed.</div>
+          <br>
+          So, after a couple sketches and prototypes I ended up our v1.0!
+          <img src="/images/f1tenth-v1.jpg">
+          <div class="caption">William v1.0 comes to life!</div>
+          <br>
+          My design is pretty simple, but keeps everything nice and neatly tucked within a top plate that secures our sensors. And this design would serve its purpose for the first
+          half of our senior year.
+        </div>
+
+        <div class="subtitle">William v2.0</div>
+        <div class="text">
+          After a semester's worth of successful <s>crashing</s> testing, William was not looking the best. I had foolishly 
+          overestimated the strength of plastic welding the two pieces together with a soldering iron, along with the durability
+          of spools of PLA I've had in my closet for 8+ years. 
+          <img src="/images/f1tenth-damage.jpg">
+          <div class="caption">Our car being held together by duct tape, superglue, zipties, and dreams</div>
+          <br>
+          So back to the drawing board; after <s>crashing</s> working with the car for a few months and having to glue it back together several times, I had a good idea of where the
+          weakest points of the design were.
+          <br><br>
+          The first improvement was to design a physical interlocking component integrated into the two pieces rather than relying on melting or gluing them together. I ended up with this design,
+          that snaps into place with a satisfying click. The triangular slopes are angled so that the piece can be printed on its side, if you've had experience working with 3d
+          printing then you'll understand the importance of print orientation and how it affects the structural integrity. Tl;dr, due to how a 3d printer stacks material in layers, 
+          the items created are weakest between these vertical layers, and strongest on the horizontal axis where a constant flow of material is extruded. 
+          <br><br>
+          In order to ensure a secure connection between the two pieces, I also extended the surface area which the two pieces have contact with each other, and threaded the screw which holds the
+          depth camera through both pieces. 
+          <img src="/images/f1tenth-connector.jpg">
+          <div class="caption">Two parts that connect together and can be separated by hand without need for sanding.</div>
+          <br>
+          I also added some sweet looking vents to the front of the plate to reduce the drag. In all honesty this propably doesn't affect the speed very much at the scale of our vehicle, but I
+          thought it looked really cool and makes our car stand out.
+          <img src="/images/f1tenth-cool.jpg">
+          <div class="caption">Style points never hurt anybody</div>
+          <br><br>
+          We also, at this point, absolutely demolished the front bumper from many close encounters with the door frame of our lab. One weekend, Jia and I took a field trip to try and find a good
+          material we could construct a new bumper out of. Home Depot did not prove to be fruitful, and when we thought to visit a craft store like Michael's, we realized it was Easter Sunday and 
+          every craft store was closed... 
+          <br>So, in a last ditch effort, we went to the local Walmart Supercenter to see what we could come up with. To our delight, we found a yoga mat that was on sale for $4.99
+          which was the absolute perfect density. Returning to the lab with a yoga mat, 3M Super 77 adhesive spray, knives, and rulers, we constructed a bumper for the car that exceeded our,
+          admittedly low, expectations.
+          <img src="/images/f1tenth-bumper.jpg">
+          <div class="caption">Our bumper before and after. The new bumper is made of three layers of yoga mat.</div> 
+        </div>
+        <div class="subtitle">The Final Build</div>
+          <img src="/images/f1tenth-spin.gif">
+          <div class="caption">Wheeeeeee</div>
+
+        <div class="subtitle">Conclusion</div>
+        <div class="text">
+          Designing and assembling the car was a very fun application of some skills I've built up over time through my personal interests. However, this was only a small portion of the project
+          and much more of my time was spent on developing the algorithm for the races. If you're interested in reading more about this project click through to Part 2 where I discuss 
+          the software end of the project as well as our final presentation.
+        </div>
+        <br>
+        <div class="project-link">
+          <a href="blog/f1tenth-2.html">Part II: Algorithm and Presentation→</a>
+        </div>
+
+        <div class="tag">
+        --<br/>
+        Until next time, cheers~
+      </div>
+      </div>
+    </div>
+  </body>
+</html>
