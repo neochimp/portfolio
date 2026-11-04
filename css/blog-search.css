@@ -1,6 +1,7 @@
 :root{
   --mainColor: #00ab80;
   --bgColor: #242424;
+  color-scheme: light;
 }
 
 .blogs{
