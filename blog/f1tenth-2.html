@@ -84,7 +84,7 @@
             to create a virtual map.
             <img src="/images/f1tenth-mapping.gif">
             <div class="caption">Map being generated in real time in RViz</div>
-
+            <br/>
             Once we have a map we can calculate the "global trajectory" which is essentially the most optimal 
             path to take around the track. With this, we in theory can drop the robot into the 
             environment we have mapped and take in sensor information with localization algorithms
@@ -93,6 +93,7 @@
             were up and running.
             <img src="/images/f1tenth-localization.gif">
             <div class="caption">Shoutout to my GOAT Professor Choi</div>
+            <br/>
             Once we started running the car with the existing stack, we noticed two glaring issues:
         </div>
         <div class="text">
@@ -101,6 +102,8 @@
             we had to manually drive the car to create a map and generate a new global trajectory 
             before being able to test. 
             <img src="/images/f1tenth-kingofthehill.gif">
+            <div class="caption">Alexa, play King of The Hill theme song</div>
+
         </div>
         <div class="text">
             Secondly, once we started to crank up the speed, the localization got increasingly less
@@ -118,23 +121,58 @@
         
         <div class="subtitle">Disparity Extender</div>
         <div class="text">
-            And so, thanks to <a href="https://jia-s-personal-portfolio.vercel.app/">Jia</a>'s searching, we landed
+            Thanks to <a href="https://jia-s-personal-portfolio.vercel.app/">Jia</a>'s searching, we landed
             on the "Disparity Extender" algorithm. Disparity was used by a team from UNC-Chapel Hill that won
             an F1Tenth competition, held at CPSWeek 2019, in Montreal. I will briefly discuss how the algorithm works, 
             but if you'd like a more in depth (and possibly more accurate) explanation, I highly encourage you to
             go check out their original <a href="https://www.nathanotterness.com/2019/04/the-disparity-extender-algorithm-and.html">blogpost</a>. 
             <br/><br/>
-            
+            The Disparity Extender algorithm is beautifully simple. There are only two main principles. 1: <b>Find the longest "safe" path</b>;
+            and 2: <b>Drive as fast as you can</b>.
+            <br/><br/>
+            We determine what paths are considered "safe" by taking all of the LiDAR scans, using the disparities between 
+            the points in order to determine where obstacles start and end, then calculate how many lidar scans we need
+            to exclude from that point in order to pad for the width of the car i.e. extending the disparities. 
+            <img src="/images/f1tenth-disparity.png">
+            <div class="caption">Graphic courtesy of Jia</div>
+            <br/><br/>
+            Now we are left with an array of safe paths to take (assuming you've properly accounted for the width of the car) 
+            and we can shoot the car down the longest path as fast as we can. Theoretically, As long as we are doing 
+            this calculation frequently enough, we should change directions before ever approaching an obstacle, as 
+            long as a viable path can be seen; and, evidently this worked out great for the UNC-Chapel team. We 
+            however, would not be so fortunate as two major problems quickly presented themselves.
+        </div>
+        <div class="text">
+            We don't have a ton of space in the <a href="https://rtec.sdsu.edu/">RTEC Lab</a>, especially since we share the space with another
+            lab group at SDSU. It's plenty roomy for the lot of us working on software and simulators, but when it 
+            comes time to drive the car around it gets quite tight, especially when compared to the size of the competition tracks.
+            <img src="/images/f1tenth-marbles.jpg">
+            <div class="caption">Losing my marbles after many late nights</div>
+            <br/><br/>
+            Because of this, when we test, the car is constantly making really sharp and tight turns. With the car blindly
+            driving at max speed, it could not turn nearly fast enough by the time a more optimal path presented itself. 
+            We were able to temporarily test the algorithm in our space by setting a cap to the maximum speed, but this 
+            made the car far too slow in long straightaways where there was more than enough room speed up.
+        </div>
+        <div class="text">
+            When trying to tackle the opposite problem, large open spaces, we found that the algorithm could not properly
+            decide which path to take. In this case, all of the LiDAR scans were an equal distance, causing somewhat
+            undefined behavior. The car would unnecessarily change paths, swerve side to side and in some cases 
+            completely spinning out of control.
+            <img src="/images/f1tenth-sim.gif">
+            <div class="caption">Thank goodness for simulators</div>
         </div>
 
         <div class="subtitle">Disparity+</div>
         <div class="text">
-        
+            I spent an overwhelming majority of my spring semester working on fixing these glaring issues that hindered the car
+            from being able to race on any track you dropped it in. These improvements I coined 
+            <div class= "it"; style="color: gold; display: inline-block">Disparity+</div>!
         </div>
         
-        <div class="subtitle"></div>
+        <div class="subtitle">Conclusion</div>
         <div class="text">
-        
+            WIP
         </div>
 
       </div>
