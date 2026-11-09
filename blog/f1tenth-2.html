@@ -83,15 +83,48 @@
             drive the robot around the track. LiDAR scans of the environment are then stitched together
             to create a virtual map.
             <img src="/images/f1tenth-mapping.gif">
+            <div class="caption">Map being generated in real time in RViz</div>
+
             Once we have a map we can calculate the "global trajectory" which is essentially the most optimal 
             path to take around the track. With this, we in theory can drop the robot into the 
             environment we have mapped and take in sensor information with localization algorithms
-            to estimate where we are in the map, adjusting to fit the global trajectory.
+            to estimate where we are in the map, adjusting to fit the global trajectory. Lucky for us,
+            Choi's existing team already had a working stack using this method, and not before long we 
+            were up and running.
+            <img src="/images/f1tenth-localization.gif">
+            <div class="caption">Shoutout to my GOAT Professor Choi</div>
+            Once we started running the car with the existing stack, we noticed two glaring issues:
+        </div>
+        <div class="text">
+            First, and the most obvious, was how much time had to be put into setting up the 
+            system for a track. Every time we put the track back together, or moved to a new location,
+            we had to manually drive the car to create a map and generate a new global trajectory 
+            before being able to test. 
+            <img src="/images/f1tenth-kingofthehill.gif">
+        </div>
+        <div class="text">
+            Secondly, once we started to crank up the speed, the localization got increasingly less
+            accurate. Our baseline experiments showed that the speed capped out at about 2 meters
+            per second before localization completely failed.
+            <img src="/images/f1tenth-turning.gif">
+            <div class="caption">Clean maneuvers but not fast enough for a race</div>
+            <br/><br/>
+            So, we looked toward a more reaction based approach. Rather than relying on a predefined
+            trajectory and constantly trying to maintain that point, we can instead take in the 
+            sensor information and make decisions on how to steer in real time. In theory, this 
+            would be slower than taking the most optimal path; but, in practice, we can hit 
+            higher max speeds by not having to rely on complex computations.
         </div>
         
         <div class="subtitle">Disparity Extender</div>
         <div class="text">
-        
+            And so, thanks to <a href="https://jia-s-personal-portfolio.vercel.app/">Jia</a>'s searching, we landed
+            on the "Disparity Extender" algorithm. Disparity was used by a team from UNC-Chapel Hill that won
+            an F1Tenth competition, held at CPSWeek 2019, in Montreal. I will briefly discuss how the algorithm works, 
+            but if you'd like a more in depth (and possibly more accurate) explanation, I highly encourage you to
+            go check out their original <a href="https://www.nathanotterness.com/2019/04/the-disparity-extender-algorithm-and.html">blogpost</a>. 
+            <br/><br/>
+            
         </div>
 
         <div class="subtitle">Disparity+</div>
