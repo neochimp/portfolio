@@ -91,7 +91,7 @@
             to estimate where we are in the map. From there we can steer to fit the global trajectory. Lucky for us,
             Choi's existing team already had a working stack using this method, and before long, we 
             were up and running.
-            <img src="/images/f1tenth-localization.gif">
+            <img src="/images/blog/f1tenth/f1tenth-localization.gif">
             <div class="caption">Shoutout to my GOAT Professor Choi</div>
             <br/>
             Once we started running the car with the existing stack, we noticed two glaring issues:
@@ -101,7 +101,7 @@
             system for a track. Every time we put the track back together, or moved to a new location,
             we had to manually drive the car to create a map and generate a new global trajectory 
             before being able to test. 
-            <img src="/images/f1tenth-kingofthehill.gif">
+            <img src="/images/blog/f1tenth/f1tenth-kingofthehill.gif">
             <div class="caption">Alexa, play King of The Hill theme song</div>
 
         </div>
@@ -109,7 +109,7 @@
             Secondly, once we started to crank up the speed, the localization got increasingly less
             accurate. Our baseline experiments showed that the speed capped out at about 2 meters
             per second before localization completely failed.
-            <img src="/images/f1tenth-turning.gif">
+            <img src="/images/blog/f1tenth/f1tenth-turning.gif">
             <div class="caption">Clean maneuvers but not fast enough for a race</div>
             <br/><br/>
             So, we looked toward a more reaction based approach. Rather than relying on a predefined
@@ -133,7 +133,7 @@
             We determine what paths are considered "safe" by taking all of the LiDAR scans, using the disparities between 
             the points in order to determine where obstacles start and end, then calculate how many lidar scans we need
             to exclude from that point in order to pad for the width of the car i.e. extending the disparities. 
-            <img src="/images/f1tenth-disparity.png">
+            <img src="/images/blog/f1tenth/f1tenth-disparity.png">
             <div class="caption">Graphic courtesy of Jia</div>
             <br/><br/>
             Now we are left with an array of safe paths to take (assuming you've properly accounted for the width of the car) 
@@ -146,7 +146,7 @@
             We don't have a ton of space in the <a href="https://rtec.sdsu.edu/">RTEC Lab</a>, especially since we share the space with another
             lab group at SDSU. It's plenty roomy for the lot of us working on software and simulators, but when it 
             comes time to drive the car around it gets quite tight, especially when compared to the size of the competition tracks.
-            <img src="/images/f1tenth-marbles.jpg">
+            <img src="/images/blog/f1tenth/f1tenth-marbles.jpg">
             <div class="caption">Losing my marbles after many late nights</div>
             <br/><br/>
             Because of this, when we test, the car is constantly making really sharp and tight turns. With the car blindly
@@ -159,7 +159,7 @@
             decide which path to take. In this case, all of the LiDAR scans were an equal distance, causing somewhat
             undefined behavior. The car would unnecessarily change paths, swerve side to side, and in some cases 
             completely spin out of control.
-            <img src="/images/f1tenth-sim.gif">
+            <img src="/images/blog/f1tenth/f1tenth-sim.gif">
             <div class="caption">Thank goodness for simulators</div>
         </div>
 
@@ -213,7 +213,7 @@ filtered_speed = (
             information. By weighing the previous value higher we trade responsiveness for stability and vice versa.
             We ended up using this both on the derivative of our PD controller and on the resulting speed command.
             Now, the car was running smooth like butter at high speeds.
-            <img src="/images/f1tenth-smooth.gif">
+            <img src="/images/blog/f1tenth/f1tenth-smooth.gif">
             <div class="caption">Absolute cinema</div>
         </div>
         <br>
@@ -231,9 +231,9 @@ filtered_speed = (
             we're using here. A smooth, symmetrical curve that peaks in the middle and tapers off toward the sides.
             This way, when multiple paths are equally viable, the car naturally favors the one that keeps it driving straight 
             but at the same time making sure we don't prevent the car from turning when necessary.
-            <img src="/images/f1tenth-gaussian.png">
+            <img src="/images/blog/f1tenth/f1tenth-gaussian.png">
             <div class="caption">Diagram courtesy of Jia once again</div>
-            <img src="/images/f1tenth-outside.gif">
+            <img src="/images/blog/f1tenth/f1tenth-outside.gif">
             <div class="caption">With this we were able to take William on a field trip</div>
         </div>
 
@@ -243,9 +243,9 @@ filtered_speed = (
             crash when demoing it for the audience!
             <iframe src="https://www.youtube.com/embed/MMeYyu12USo"></iframe>
             <div class="caption">Epic video for the presentation</div>
-            <img src="/images/f1tenth-poster.png">
+            <img src="/images/blog/f1tenth/f1tenth-poster.png">
             <div class="caption">Our final presentation poster</div>
-            <img src="/images/f1tenth-team.jpg">
+            <img src="/images/blog/f1tenth/f1tenth-team.jpg">
             <div class="caption">The capstone team ♡<br/>From left to right: 
             <a href="https://www.linkedin.com/in/brylejaronong/">Bryle Ong</a>,
             <a href="https://bobbyyf.github.io/">Robert (Bobby) Fuller</a>, 
@@ -259,7 +259,7 @@ filtered_speed = (
             exactly what I'm pursuing now (more on this in a future blog). I learned so much throughout this project and made many great friends through 
             many painstaking late nights. The RTEC lab became a safe space for me when my life was getting rough and 
             I will forever be grateful that the powers at be decided to present me with this timeline.
-            <img src="/images/f1tenth-family.jpg">
+            <img src="/images/blog/f1tenth/f1tenth-family.jpg">
             <div class="caption">The lab extended family ♡<br/>(Those whom I didn't previously 
             mention) From left to right: 
             <a href="https://www.linkedin.com/in/tiannanelson/">Tianna Nelson</a>,
