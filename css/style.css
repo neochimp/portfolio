@@ -175,13 +175,15 @@ body {
 
 .recents {
   position: fixed;
-  top: 9em; /* same as body padding-top */
-  left: 77%; /* gap between boxes */
+  top: 9em;
+  left: 77%;
+  right: 2em;
+  min-width: 0;
   padding-left: 2.5em;
+  padding-right: 2em;
+  margin-top: 2em;
   border-left: solid;
   color: var(--mainColor);
-  padding-right: 10em;
-  margin-top: 2em;
 }
 
 .title {
@@ -190,6 +192,9 @@ body {
   color: var(--mainColor);
 }
 
+.section-divider + .recent-blog {
+  padding-top: 0;
+}
 .recent-blog {
   color: white;
   padding: 2em;
@@ -453,15 +458,45 @@ code.inline:has(a):hover {
   letter-spacing: 0.02em;
 }
 
-.link-buttons {
+.section-divider {
   display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
   align-items: center;
-  justify-content: center;
+  gap: 0.75em;
+  margin-top: 2em;
+  margin-bottom: 1.5em;
+  color: var(--mainColor);
+  font-size: 0.8em;
+  font-weight: bold;
+  white-space: nowrap;
+  letter-spacing: 0.1em;
+  font-size: 1em;
 }
 
-.link-buttons a {
+.section-divider::before,
+.section-divider::after {
+  content: "";
+  height: 1px;
+  background-color: var(--mainColor);
+  flex: 1;
+}
+.webring {
+  padding-top: 0.5em;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.webring-scroll {
+  display: flex;
+  width: max-content;
+  gap: 16px;
+  align-items: center;
+  animation: marquee 30s linear infinite;
+}
+
+.webring a {
   display: block;
   line-height: 0;
   width: 88px;
@@ -469,7 +504,7 @@ code.inline:has(a):hover {
   flex: 0 0 auto;
 }
 
-.link-buttons a img {
+.webring a img {
   display: block;
   width: 88px;
   height: 31px;
@@ -481,9 +516,22 @@ code.inline:has(a):hover {
   image-rendering: pixelated;
 }
 
-.link-buttons a:hover img {
+.webring a:hover img {
   transform: translateY(-1px);
   filter: brightness(1.12) contrast(1.05);
+}
+
+.webring:hover .webring-scroll {
+  animation-play-state: paused;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 /* ========== Override styles for small screens ========== */
@@ -560,15 +608,14 @@ code.inline:has(a):hover {
     margin-right: 0;
   }
 
-  .recents {
-    position: static;
-    width: 80%;
-    left: auto;
-    top: auto;
-    padding-inline-start: 3em;
-    padding-right: 3em;
-    margin-left: 2em
-  }
+.recents {
+  position: static;
+  width: 100%;
+  min-width: 0;
+  margin: 2em 0 0;
+  padding: 1em;
+  border-left: solid;
+}
 
   .title {
     width: 100%;
