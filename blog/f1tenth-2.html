@@ -81,14 +81,14 @@
             <br/><br/>
             The first option is path planning. In order to plan a path, you first have to manually 
             drive the robot around the track. LiDAR scans of the environment are then stitched together
-            to create a virtual map.
-            <img src="/images/f1tenth-mapping.gif">
-            <div class="caption">Map being generated in real time in RViz</div>
+            to create a virtual map. 
+            <iframe src="https://www.youtube.com/embed/N1Fne_VUHUY"></iframe>
+            <div class="caption">Map being generated in real time via RViz</div>
             <br/>
-            Once we have a map we can calculate the "global trajectory" which is essentially the most optimal 
-            path to take around the track. With this, we in theory can drop the robot into the 
-            environment we have mapped and take in sensor information with localization algorithms
-            to estimate where we are in the map, adjusting to fit the global trajectory. Lucky for us,
+            Once we have a map, we can calculate the "global trajectory" which is essentially the most optimal 
+            path to take around the track. With this, we can drop the robot into the 
+            environment we have mapped and use sensor information and localization algorithms
+            to estimate where we are in the map. From there we can steer to fit the global trajectory. Lucky for us,
             Choi's existing team already had a working stack using this method, and not before long we 
             were up and running.
             <img src="/images/f1tenth-localization.gif">
@@ -165,10 +165,12 @@
 
         <div class="subtitle">Disparity+</div>
         <div class="text">
-            I spent an overwhelming majority of my spring semester working on fixing these glaring issues that hindered the car
-            from being able to race on any track you dropped it in. These improvements I coined 
+            I spent an overwhelming majority of my spring semester working on fixing these glaring issues. I wanted the car
+            to be able to be dropped in any track and RACE. These improvements I coined 
             <div class= "it"; style="color: gold; display: inline-block">Disparity+</div>!
         </div>
+        <br/>
+        <u>Proportional Derivative Speed Controller</u>
         <div class="text">
             In order to fix the cornering issue, we needed a way to reign in the speed. Initially, we tried to just 
             scale the speed proportionally to how long the path was, but this wasn't sufficient. If we tuned the 
@@ -214,12 +216,62 @@ filtered_speed = (
             <img src="/images/f1tenth-smooth.gif">
             <div class="caption">Absolute cinema</div>
         </div>
+        <br>
+        <u>Gaussian Steering Bias</u>
+        <div class="text">
+            So, like I mentioned previously, when the car is placed on a big track with several equally valued LiDAR scans, 
+            the logical decision would be to continue driving straight until a real informed decision can be made. However,
+            because all of these paths are equally valued, the car has no real preference for one direction over another.
+            As a result, even the slightest noise in sensor readings would cause it to suddenly favor a completely
+            random path — swerving left and right for seemingly no reason, despite having plenty of room to drive straight
+            <br/><br/>
+            To fix this, we decided to introduce a little bias into our steering calculations. Using a Gaussian curve centered
+            around the forward facing direction, we assign higher weights to paths closer to the center of our FOV and 
+            progressively lower weights to paths further away. If you've ever seen a bell curve, that's essentially what
+            we're using here. A smooth, symmetrical curve that peaks in the middle and tapers off toward the sides.
+            This way, when multiple paths are equally viable, the car naturally favors the one that keeps it driving straight 
+            but at the same time making sure we don't prevent the car from turning when necessary.
+            <img src="/images/f1tenth-gaussian.png">
+            <div class="caption">Diagram courtesy of Jia once again</div>
+            <img src="/images/f1tenth-outside.gif">
+            <div class="caption">With this we were able to take William on a field trip</div>
+        </div>
 
         <div class="subtitle">Conclusion</div>
         <div class="text">
-            WIP
+            With these two additions implemented, we had a phenomenal presentation at the end of the year and not a single 
+            crash when demoing it for the audience!
+            <iframe src="https://www.youtube.com/embed/MMeYyu12USo"></iframe>
+            <div class="caption">Epic video for the presentation</div>
+            <img src="/images/f1tenth-poster.png">
+            <div class="caption">Our final presentation poster</div>
+            <img src="/images/f1tenth-team.jpg">
+            <div class="caption">The capstone team ♡<br/>From left to right: 
+            <a href="https://www.linkedin.com/in/brylejaronong/">Bryle Ong</a>,
+            <a href="https://bobbyyf.github.io/">Robert (Bobby) Fuller</a>, 
+            <a href="https://cameron-lee.com/">Cameron Lee (Me!)</a>, 
+            <a href="https://neonetizen.net/">Justin Pelak</a>, and 
+            <a href="https://jia-s-personal-portfolio.vercel.app/">Jia Gapuz</a>
+            </div>
+            <br/><br/>
+            Getting the opportunity to work on this project for a whole year was one of the most formative experiences of 
+            my career trajectory. This was my first deep dive into robotics and a research environment; and, as a result that is 
+            exactly what I'm pursuing now (more about this in a future blog). I learned so much throughout this project and made many great friends through 
+            many painstaking late nights. The RTEC lab became a safe space for me when my life was getting rough and 
+            I will forever be grateful that the powers at be decided to present me with this timeline.
+            <img src="/images/f1tenth-family.jpg">
+            <div class="caption">The lab extended family ♡<br/>(Those whom I didn't previously 
+            mention) From left to right: 
+            <a href="https://www.linkedin.com/in/tiannanelson/">Tianna Nelson</a>,
+            <a href="https://francissanb.github.io/">Francis Fernandez</a>, 
+            <a href="https://www.linkedin.com/in/jadengong/">Jaden Ong</a>, and
+            <a href="https://www.theaenache.com/">Thea Enache</a>
+            </div>
         </div>
-
+        <div class="tag">
+        --<br/>
+        Until next time, cheers~
+      </div>
       </div>
     </div>
   </body>

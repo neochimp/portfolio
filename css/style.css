@@ -217,20 +217,28 @@ body {
 img {
   display: block;
   margin: auto;
-  padding-top: 2em;
+  padding-top: 0.5em;
   max-width: min(900px, 90%);
   height: auto;
   max-height: 70vh;
-  height: auto;
   display: block;
   margin: 1rem auto;
   object-fit: contain;
 }
 
+iframe {
+  display: block;
+  margin: 1rem auto;
+  width: min(900px, 90%);
+  aspect-ratio: 16 / 9;
+  height: auto;
+  border: none;
+}
+
 .caption {
   text-align: center;
   font-style: italic;
-  padding-top: 0.5em;
+  padding-top: 0em;
   color: #949494;
   font-size: 0.8em;
 }
