@@ -169,7 +169,52 @@
             from being able to race on any track you dropped it in. These improvements I coined 
             <div class= "it"; style="color: gold; display: inline-block">Disparity+</div>!
         </div>
-        
+        <div class="text">
+            In order to fix the cornering issue, we needed a way to reign in the speed. Initially, we tried to just 
+            scale the speed proportionally to how long the path was, but this wasn't sufficient. If we tuned the 
+            value too high, then the car would slow down too soon. If we tuned the value too low, the car would not 
+            brake fast enough and smash through walls. So, the next simplest thing I could think of was adding the
+            derivative component to the equation (some goold ol' robotics 101). By taking the derivative of the distance from a wall, we can get a value
+            for how quickly the car is driving into it, allowing us to adaptively modulate the speed 
+            much more smoothly. If the car is approaching a corner slowly, speed can be maintained more. If the car 
+            is approaching a corner at high speeds, we need to brake harder. Before we knew it, our speed was governed
+            by a PD controller!
+            <br/><br/>
+            Now that our speed was being updated potentially every cycle, the car suddenly became very jerky. With 
+            the beam constantly picking new paths and sensor noise, the car seemed to stutter a lot. In order
+            to solve this, I implemented what has become one of my favorite solutions to throw at any real-time 
+            problem: the <i>exponential moving average</i>. 
+            <br/><br/>
+            The idea behind the EMA is pretty simple. Instead of reacting immediately to every new measurement,
+            we take a weighted average of our previous output and the new value. This means that sudden spikes in our
+            sensor readings don't immediately become drastic changes in our speed. Instead, changes are gradually
+            incorporated over subsequent cycles, smoothing out the response. Like whisking flour into a stew rather 
+            than dumping it all in at once. One or two outlier measurements can be
+            largely inconsequential, while real obstacles that persist across several cycles have time to influence the output. 
+
+        <div class="code-block" data-lang="Python">
+          <div class="code-header">
+            <span class="code-lang">speed_filter.py</span>
+          </div>
+          <pre class="code-body"><code>
+SPEED_FILTER_OLD = 0.75
+SPEED_FILTER_NEW = 0.25
+
+filtered_speed = (
+    (filtered_speed * SPEED_FILTER_OLD) +
+    (new_speed * SPEED_FILTER_NEW)
+)
+          </code></pre>
+        </div>
+
+            The great part about this is that it allows us some flexibility with the weights between old and new sensor
+            information. By weighing the previous value higher we trade responsiveness for stability and vice versa.
+            We ended up using this both on the derivative of our PD controller and on the resulting speed command.
+            Now, the car was running smooth like butter at high speeds.
+            <img src="/images/f1tenth-smooth.gif">
+            <div class="caption">Absolute cinema</div>
+        </div>
+
         <div class="subtitle">Conclusion</div>
         <div class="text">
             WIP
