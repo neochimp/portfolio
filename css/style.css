@@ -104,12 +104,11 @@ a:hover {
 
 body {
   background-color: var(--bgColor);
-  width: 100vw;
-  height: 100vh;
   overflow-x: hidden;
   overflow-wrap: break-word;
   color: #ffffff;
   padding-top: 7em;
+  margin-bottom: 10em;
   font-family: "Cascadia Code", sans-serif;
 }
 
@@ -491,7 +490,7 @@ code.inline:has(a):hover {
 .webring-scroll {
   display: flex;
   width: max-content;
-  gap: 16px;
+  gap: 6px;
   align-items: center;
   animation: marquee 30s linear infinite;
 }
